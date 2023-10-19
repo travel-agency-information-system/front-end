@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Tour } from '../model/tour.model';
+import { Equipment } from '../model/equipment.model';
 import { TourAuthoringService } from '../tour-authoring.service';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 import { User } from 'src/app/infrastructure/auth/model/user.model';
@@ -12,9 +13,11 @@ import { User } from 'src/app/infrastructure/auth/model/user.model';
 export class TourComponent implements OnInit{
   tours: Tour[] = [];
   selectedTour: Tour;
+  selectedEquipmet: Equipment;
   shouldRenderTourForm: boolean = false;
   shouldEdit: boolean = false;
   user: User;
+  equipment: Equipment[] = [];
 
   
   constructor(private service: TourAuthoringService,private authService: AuthService) { }
@@ -42,6 +45,17 @@ export class TourComponent implements OnInit{
       error: () => {
       }
     })
+  }
+
+  deleteEquipment(tourId?: number, equipmentId?: number): void {
+    if(tourId !== undefined && equipmentId !== undefined)
+    {
+      this.service.deleteEquimpent(tourId, equipmentId).subscribe({
+        next: () => {
+          this.getTour();
+        }
+      })
+    }
   }
 
   onEditClicked(tour: Tour): void {

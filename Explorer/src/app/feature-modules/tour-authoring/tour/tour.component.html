@@ -13,7 +13,7 @@
                     <th>Tags</th>
                     <th>Status</th>
                     <th></th>
-                    <th></th>
+                    <th>Equipment</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,6 +32,17 @@
                             <mat-icon>edit</mat-icon>
                         </button>
                     </td>
+                    <tbody>
+                        <tr *ngFor="let e of t.equipment">
+                            <td>{{e.name}}</td>
+                            <td>{{e.description}}</td>
+                            <td>
+                                <button color="accent" (click)="deleteEquipment(t.id, e.id)" mat-icon-button>
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
                 </tr>
                 <tr><button color="primary" (click)="onAddClicked()" mat-icon-button>
                     <mat-icon>add</mat-icon>

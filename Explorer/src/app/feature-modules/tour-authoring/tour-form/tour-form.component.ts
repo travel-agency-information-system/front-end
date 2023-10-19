@@ -69,7 +69,8 @@ export class TourFormComponent implements OnChanges,OnInit{
       price: Number(this.tourForm.value.price) || 0,
       authorId : this.user.id,
       tags : this.tags,
-      status: "Draft"
+      status: "Draft",
+      equipment: [],
     };
     this.service.addTour(tour).subscribe({
       next: () => { this.tourUpdated.emit() }
@@ -106,7 +107,8 @@ export class TourFormComponent implements OnChanges,OnInit{
       price: Number(this.tourForm.value.price) || 0,
       authorId : this.user.id,
       tags : this.tour.tags,
-      status:"Draft"
+      status:"Draft",
+      equipment: this.tour.equipment
     };
     tour.id = this.tour.id;
     this.service.updateTour(tour).subscribe({

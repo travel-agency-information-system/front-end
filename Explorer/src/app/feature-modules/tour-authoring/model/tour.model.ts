@@ -1,3 +1,5 @@
+import { Equipment } from "./equipment.model";
+
 export interface Tour {
     id?: number;
     name: string;
@@ -7,5 +9,5 @@ export interface Tour {
     tags: string[];
     authorId : number;
     status:string;
-
+    equipment: Equipment[];
 }
