@@ -15,18 +15,20 @@ export class TourComponent implements OnInit{
   selectedTour: Tour;
   selectedEquipmet: Equipment;
   shouldRenderTourForm: boolean = false;
+  //shouldRenderAddEquipmentList: boolean = false;
   shouldEdit: boolean = false;
   user: User;
   equipment: Equipment[] = [];
 
   
-  constructor(private service: TourAuthoringService,private authService: AuthService) { }
+  constructor(private service: TourAuthoringService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.authService.user$.subscribe(user => {
       this.user = user;
     });
     this.getTour();
+    //this.getEquipment();
   }
   
   deleteTour(id: number): void {
@@ -47,10 +49,33 @@ export class TourComponent implements OnInit{
     })
   }
 
-  deleteEquipment(tourId?: number, equipmentId?: number): void {
+
+  // getEquipment(): void {
+  //   this.service.getEquipment().subscribe({
+  //     next: (result: Equipment[]) => {
+  //       this.equipment = result;
+  //     },
+  //     error: () => {
+  //     }
+  //   })
+  // }
+
+
+  removeEquipment(tourId?: number, equipmentId?: number): void {
     if(tourId !== undefined && equipmentId !== undefined)
     {
-      this.service.deleteEquimpent(tourId, equipmentId).subscribe({
+      this.service.removeEquipment(tourId, equipmentId).subscribe({
+        next: () => {
+          this.getTour();
+        }
+      })
+    }
+  }
+
+  addEquipment(tourId?: number, equipmentId?: number): void {
+    if(tourId !== undefined && equipmentId !== undefined)
+    {
+      this.service.addEquipment(tourId, equipmentId).subscribe({
         next: () => {
           this.getTour();
         }
@@ -63,6 +88,14 @@ export class TourComponent implements OnInit{
     this.shouldRenderTourForm = true;
     this.shouldEdit = true;
   }
+
+  // onAddEquipmnetClicked(): void{
+  //   if(this.shouldRenderAddEquipmentList === true)
+  //   {
+  //     this.shouldRenderAddEquipmentList = false;
+  //   }
+  //   this.shouldRenderAddEquipmentList = true;
+  // }
 
   onAddClicked(): void {
     this.shouldEdit = false;

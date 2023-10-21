@@ -32,17 +32,36 @@
                             <mat-icon>edit</mat-icon>
                         </button>
                     </td>
-                    <tbody>
-                        <tr *ngFor="let e of t.equipment">
-                            <td>{{e.name}}</td>
-                            <td>{{e.description}}</td>
-                            <td>
-                                <button color="accent" (click)="deleteEquipment(t.id, e.id)" mat-icon-button>
-                                    <mat-icon>delete</mat-icon>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
+                    <div>
+                        <table>
+                            <tbody>
+                                <tr *ngFor="let e of t.equipment">
+                                    <td>{{e.name}}</td>
+                                    <td>{{e.description}}</td>
+                                    <td>
+                                        <button color="accent" (click)="removeEquipment(t.id, e.id)" mat-icon-button>
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- <div>
+                        <table>
+                            <tbody>
+                                <tr *ngFor="let e of equipment">
+                                    <td>{{e.name}}</td>
+                                    <td>{{e.description}}</td>
+                                    <td>
+                                        <button color="primary" mat-icon-button>
+                                            <mat-icon>add</mat-icon>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div> -->
                 </tr>
                 <tr><button color="primary" (click)="onAddClicked()" mat-icon-button>
                     <mat-icon>add</mat-icon>

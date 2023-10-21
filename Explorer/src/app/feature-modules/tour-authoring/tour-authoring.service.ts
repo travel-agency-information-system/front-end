@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Tour } from './model/tour.model';
 import { environment } from 'src/env/environment';
 import { Observable } from 'rxjs';
+import { Equipment } from './model/equipment.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,8 +28,16 @@ export class TourAuthoringService {
     return this.http.delete<Tour>(environment.apiHost + 'administration/tour/' + id);
   }
 
-  deleteEquimpent(tourId: number, equipmentId: number){
+  // getEquipment(): Observable<Equipment[]>{
+  //   return this.http.get<Equipment[]>(environment.apiHost + 'administration/equipment');
+  // }
+
+  removeEquipment(tourId: number, equipmentId: number){
     return this.http.put<Tour>(environment.apiHost + 'administration/tour/remove/' + tourId + '/' + equipmentId, null);
+  }
+
+  addEquipment(tourId: number, equipmentId: number){
+    return this.http.put<Tour>(environment.apiHost + 'administration/tour/add/' + tourId + '/' + equipmentId, null);
   }
 
 }
