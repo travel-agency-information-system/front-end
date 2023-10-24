@@ -6,12 +6,6 @@
             <button *ngIf="user && user.username !== ''" color="accent" mat-raised-button (click)="onLogout()">Logout</button>
             <button color="primary" mat-raised-button [routerLink]="['home']">Home</button>
             <button *ngIf="user && user.role === 'administrator'"color="primary" mat-raised-button [routerLink]="['equipment']">Manage equipment</button>
-            <button *ngIf="user && (user.role === 'author' || user.role === 'tourist')"color="primary" mat-raised-button [routerLink]="['blog-comments']">Blog comments</button>
-            <button *ngIf="user && (user.role === 'author' || user.role === 'tourist')"color="primary" mat-raised-button [routerLink]="['blog-post']">Manage blogs</button>
-            <button *ngIf="user && user.role === 'tourist'"color="primary" mat-raised-button [routerLink]="['preference']">Manage preference</button>
-            <button *ngIf="user && user.role === 'author'"color="primary" mat-raised-button [routerLink]="['tour']">Tours</button>
-            <button *ngIf="user && user.role === 'tourist'"color="primary" mat-raised-button [routerLink]="['club']">Clubs</button>
-            <button *ngIf="user && user.role === 'tourist'"color="primary" mat-raised-button [routerLink]="['invitations']">Invitations</button>
         </div>
     </div>
 </mat-toolbar>
