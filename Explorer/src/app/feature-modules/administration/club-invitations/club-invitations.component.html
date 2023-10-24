@@ -1,0 +1,27 @@
+<div id="club">
+    <p></p>
+    <div id="club-details">
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th> Description </th>
+                    <th> Options </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let i of invitations">
+                    <td>Request from {{i.ownerId}}</td>
+                    <td>
+                        <button color="accent" (click)="acceptInvite(i)" mat-icon-button>
+                            <mat-icon>done</mat-icon></button>
+                        <button color="accent" (click)="rejectInvite(i)" mat-icon-button>
+                            <mat-icon>cancel</mat-icon>   
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>

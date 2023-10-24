@@ -1,0 +1,27 @@
+<form [formGroup]="blogPostForm">
+    <div>
+        <mat-form-field>
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title" type="text" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Description</mat-label>
+            <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" formControlName="description"
+                cdkAutosizeMaxRows="5"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Image URLs</mat-label>
+            <input matInput formControlName="imageUrls" type="text" />
+        </mat-form-field>
+        <!-- Add -->
+        <button *ngIf="!shouldEdit" color="primary" type="submit" (click)="addBlogPost(BlogPostStatus.Draft)"
+            mat-raised-button>Draft</button>
+        <button *ngIf="!shouldEdit" color="primary" type="submit" (click)="addBlogPost(BlogPostStatus.Published)"
+            mat-raised-button>Publish</button>
+        <!-- Update -->
+        <button *ngIf="shouldEdit" color="primary" type="submit" (click)="updateBlogPost(BlogPostStatus.Draft)"
+            mat-raised-button>Draft</button>
+        <button *ngIf="shouldEdit" color="primary" type="submit" (click)="updateBlogPost(BlogPostStatus.Published)"
+            mat-raised-button>Publish</button>
+    </div>
+</form>

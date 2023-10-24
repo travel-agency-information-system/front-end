@@ -1,0 +1,18 @@
+<div class="comment-form">
+    <form [formGroup]="blogCommentForm">
+      <mat-form-field>
+        <mat-label>Write something...</mat-label>
+        <input matInput formControlName="text" type="text"/>
+      </mat-form-field>
+    </form>
+    <button *ngIf="!shouldEdit" class="form-button" type="submit" color="primary" (click)="addComment()" mat-raised-button>
+      <div>
+        <mat-icon>send</mat-icon>
+      </div>
+    </button>
+    <button *ngIf="shouldEdit" class="form-button" type="submit" color="primary" (click)="updateBlogComment()" mat-raised-button>
+      <div>
+        <mat-icon>edit</mat-icon>
+      </div>
+    </button>
+  </div>

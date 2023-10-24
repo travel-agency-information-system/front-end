@@ -1,0 +1,24 @@
+<form [formGroup]="clubForm">
+    <div>
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput type="text" formControlName="name">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <mat-label>Description</mat-label>
+            <input matInput type="text" formControlName="description">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <mat-label>Image</mat-label>
+            <input matInput type="text" formControlName="image">
+        </mat-form-field>
+    </div>
+    <div>
+        <button *ngIf="!shouldEdit" mat-raised-button type="submit" color="primary" (click)="addClub()">Done</button>
+        <button *ngIf="shouldEdit" mat-raised-button type="submit" color="primary" (click)="updateClub()">Done</button>
+    </div>
+</form>

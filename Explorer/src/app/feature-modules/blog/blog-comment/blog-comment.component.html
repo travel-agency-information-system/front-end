@@ -1,0 +1,19 @@
+<div>
+  <div *ngFor="let comment of blogComments; let i = index" class="comment-box">
+    <div class="comment-options">
+      <button (click)="toggleOptions(i)">...</button>
+      <div class="comment-options-menu" [ngClass]="{'show': isOptionsVisible(i)}">
+        <a (click)="editComment(comment); toggleOptions(i)">Edit</a>
+        <a (click)="deleteComment(comment.id || 0); toggleOptions(i)">Delete</a>
+      </div>
+    </div>
+    <div class="comment-text">{{ comment.text }}</div>
+    <div class="comment-metadata">
+      <span class="comment-time">Created: {{ comment.creationTime | date: 'HH:mm dd.MM.yyyy'}} </span>
+      <span class="comment-time" *ngIf="comment.modificationTime !== null">Last modified: {{ comment.modificationTime | date: 'HH:mm dd.MM.yyyy'}}</span>
+    </div>
+  </div>
+  <div>
+    <xp-blog-comment-form [shouldEdit]="shouldEdit" [blogComment]="selectedBlogComment" (blogCommentsUpdated)="getBlogComments()"></xp-blog-comment-form>
+  </div>
+</div>

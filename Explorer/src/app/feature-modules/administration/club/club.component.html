@@ -1,0 +1,56 @@
+<div id="club">
+    <p>Club</p>
+    <hr>
+    <div id="club-details">
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th> Name </th>
+                    <th> Description </th>
+                    <th> Image </th>
+                    <th> Owner </th>
+                    <th> Edit </th>
+                    <th> Delete </th>
+                    <th> Options </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let c of club">
+                    <td>{{c.name}}</td>
+                    <td>{{c.description}}</td>
+                    <img [src]="c.image" alt="Club Image">
+                    <td>{{c.touristId}}</td>
+                    <td>
+                        <button *ngIf="isCurrentUserOwner(c)" (click)="onEditClicked(c)" color="primary" mat-icon-button>
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    </td>
+                    <td>
+                        <button *ngIf="isCurrentUserOwner(c)" (click)="deleteClub(c.id || 0)" color="accent" mat-icon-button>
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                    <td>
+                        <button *ngIf="isCurrentUserOwner(c)" color="primary" mat-raised-button (click)="navigateToManageMembers(c.id!)">Manage members</button>
+                    </td>
+                </tr>
+                <tr>
+                    <button (click)="onAddClicked()" color="primary" mat-icon-button>
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </tr>
+                <tr>
+                    <button *ngIf="shouldAdd || shouldEdit" (click)="onCloseClicked()" color="warn" mat-icon-button>
+                        <mat-icon>remove</mat-icon>
+                    </button>
+                  </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+    <br>
+    <div>
+        <xp-club-form *ngIf="shouldAdd || shouldEdit" (clubUpdated)="getClub()" [club]="selectedClub" [shouldEdit]="shouldEdit"></xp-club-form>
+    </div>
+</div>

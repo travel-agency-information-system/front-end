@@ -1,0 +1,21 @@
+.comment-form {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+  margin-left: 40px;
+  width: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f9f9f9;
+}
+
+.input-field {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.form-button {
+  width: 20px; 
+  margin-right: 20px;
+}

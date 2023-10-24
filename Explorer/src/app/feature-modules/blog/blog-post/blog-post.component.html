@@ -1,0 +1,58 @@
+<div id="blog-post">
+    <p>Blog Posts</p>
+    <hr>
+    <div id="blog-post-details">
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Images</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let bp of blogPosts">
+                        <td>
+                            <b>{{bp.title}}</b><br>
+                            {{ bp.creationDate | date:'HH:mm dd.MM.yyyy' }}<br>
+                            <i>{{bp.status}}</i>
+                        </td>
+                        <td [innerHTML]="bp.description"></td>
+                        <td>
+                            <div *ngFor="let imageUrl of bp.imageUrls">
+                                <img [src]="imageUrl" alt="Image" style="max-width: 200px; max-height: 200px;">
+                            </div>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            <button *ngIf="bp.status.toUpperCase() === BlogPostStatus.Draft" color="primary"
+                                (click)="onEditClicked(bp)" mat-icon-button>
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button *ngIf="bp.status.toUpperCase() === BlogPostStatus.Published" color="primary"
+                                (click)="onCloseClicked(bp)" mat-icon-button>
+                                <mat-icon>archive</mat-icon>
+                            </button>
+                            <button color="accent" (click)="deleteBlogPost(bp.id || 0)" mat-icon-button>
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <button color="primary" (click)="onAddClicked()" mat-icon-button>
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <xp-blog-post-form *ngIf="shouldRenderBlogPostForm" [shouldEdit]="shouldEdit" [blogPost]="selectedBlogPost"
+                (blogPostUpdated)="getBlogPosts()"></xp-blog-post-form>
+        </div>
+    </div>
+</div>

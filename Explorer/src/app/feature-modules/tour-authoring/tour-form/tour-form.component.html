@@ -1,0 +1,69 @@
+<div id="tour-form">
+<form [formGroup]="tourForm">
+    <div>
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" type="text"/>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Description</mat-label>
+          <textarea matInput
+          cdkTextareaAutosize
+          cdkAutosizeMinRows="1"
+          formControlName="description"
+          cdkAutosizeMaxRows="5"></textarea>
+        </mat-form-field>
+        <table>
+            <tr>
+                <td>Demandigness level</td>
+                <td>
+                   
+                <select formControlName="demandignessLevel">
+                    <option value="Easy" selected>Easy</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Hard">Hard</option>
+                </select>
+                </td>
+                
+            </tr>
+        </table>
+        <mat-form-field>
+            <mat-label>Price</mat-label>
+            <input matInput formControlName="price" type="number" [defaultValue]="0" min="0" placeholder="0"/>
+        </mat-form-field>
+        <form [formGroup]="tagForm">
+            <div>
+                <table>
+                    <tr>
+                        <td>
+                            <mat-form-field id="tag">
+                            <mat-label>Tag</mat-label>
+                            <input matInput formControlName="tag" type="text"/>
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <button id="tag"  color="primary" type="submit" (click)="addTag()" mat-raised-button>+</button>
+                        </td>
+                    </tr>
+                    
+                    
+            </table>
+            Added tags:
+            <table>
+                <tr *ngFor="let t of tags">    
+                    
+                       <td>{{t}}</td>
+                       
+                       <td><button id="tag"  color="lightBlue" (click)="removeTag(t)" mat-raised-button>✖️</button></td>
+                       
+                   </tr>
+            </table>
+            </div>
+        </form>
+    <button *ngIf="!shouldEdit" color="primary" type="submit" (click)="addTour()" mat-raised-button>Done</button>
+    <button *ngIf="shouldEdit" color="primary" type="submit" (click)="updateTour()" mat-raised-button>Done</button>
+
+    </div>
+</form>
+
+</div>

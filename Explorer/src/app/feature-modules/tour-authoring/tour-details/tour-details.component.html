@@ -1,0 +1,30 @@
+<p>{{tour.name}}</p>
+
+<table>
+    <tr>
+        <th>Description</th>
+        <td>{{tour.description}}</td>
+    </tr>
+    <tr>
+        <th>Price</th>
+        <td>{{tour.price}}</td>
+    </tr>
+    <tr>
+        <th>Status</th>
+        <td>{{tour.status}}</td>
+    </tr>
+    <tr>
+        <th>Demandigness level</th>
+        <td>{{tour.demandignessLevel}}</td>
+    </tr>
+    <tr>
+        <th>Tags</th>
+        <td>
+            <table>
+                <tr *ngFor="let tag of tour.tags">
+                    <td>{{tag}}</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
