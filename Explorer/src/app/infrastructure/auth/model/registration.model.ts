@@ -5,7 +5,7 @@ export interface Registration {
     username: string,
     password: string,
     role: string,
-    profilePictureUrl: string,
+    profileImageBytes: Uint8Array;
     biography: string,
     motto: string;
 }

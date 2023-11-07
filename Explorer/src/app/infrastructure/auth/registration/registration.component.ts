@@ -23,7 +23,7 @@ export class RegistrationComponent {
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
     role: new FormControl('Author', [Validators.required]),
-    profilePictureUrl: new FormControl('', [Validators.required]),
+    profileImageBytes: new FormControl(new Uint8Array(), [Validators.required]),
     biography: new FormControl('', [Validators.required]),
     motto: new FormControl('', [Validators.required])
   });
@@ -36,7 +36,7 @@ export class RegistrationComponent {
       username: this.registrationForm.value.username || "",
       password: this.registrationForm.value.password || "",
       role: this.registrationForm.value.role || "Author",
-      profilePictureUrl: this.registrationForm.value.profilePictureUrl || "",
+      profileImageBytes: this.registrationForm.value.profileImageBytes || new Uint8Array(),
       biography: this.registrationForm.value.biography || "",
       motto: this.registrationForm.value.motto || ""
     };
@@ -53,21 +53,15 @@ export class RegistrationComponent {
   selectedImage: string | null = null;
 
   onProfilePictureSelected(event: any) {
-    const file = event?.target?.files[0];
-  
-    if (file) {
-      const controlUrl = this.registrationForm.get('profilePictureUrl');
-      if (controlUrl) {
-        controlUrl.setValue(file.name);
-      }
+    const file = event.target.files[0];
 
+    if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        this.selectedImage = e.target?.result as string;
+        const imageBytes = new Uint8Array(e.target!.result as ArrayBuffer); // Add ! here
+        this.registrationForm.patchValue({ profileImageBytes: imageBytes });
       };
-      reader.readAsDataURL(file);
-    } else {
-      this.selectedImage = null; 
+      reader.readAsArrayBuffer(file);
     }
   }
 }

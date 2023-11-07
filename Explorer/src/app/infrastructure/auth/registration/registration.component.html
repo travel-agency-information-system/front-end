@@ -33,7 +33,7 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Profile Picture</mat-label>
-        <input matInput type="text" [readonly]="true" formControlName="profilePictureUrl" />
+        <input matInput type="text" [readonly]="true" formControlName="profileImageBytes" />
         <input type="file" (change)="onProfilePictureSelected($event)" id="fileInput" />
       </mat-form-field>                   
       <img [src]="selectedImage" *ngIf="selectedImage" alt="Selected Image" />         
