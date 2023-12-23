@@ -32,24 +32,17 @@ export class LoginComponent {
     };
 
     if (this.loginForm.valid) {
-      this.authService.isUserVerified(this.loginForm.value.username || "").subscribe((isVerified: boolean) => {
-        if (isVerified) {
-          this.authService.login(login).subscribe({
-            next: () => {
-              this.router.navigate(['/']);
-            },
-            error: (error)=>{
-            console.error('Login failed:', error); // Log the error for debugging
-            alert('Incorrect username or password!');
-          }
-          });
-        } else {
-          // Korisnik nije verifikovan, obradite ovaj slučaj
-        }
+      this.authService.login(login).subscribe({
+        next: () => {
+          this.router.navigate(['/']);
+        },
+        error: (error)=>{
+        console.error('Login failed:', error); // Log the error for debugging
+        alert('Incorrect username or password or user is not verified!');
+      }
       });
-    }
-    else{
-      alert('Please fill in both username and password.');
+    } else {
+      // Korisnik nije verifikovan, obradite ovaj slučaj
     }
   }
 }
