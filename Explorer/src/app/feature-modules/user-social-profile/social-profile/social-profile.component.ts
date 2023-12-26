@@ -5,6 +5,7 @@ import { User } from 'src/app/infrastructure/auth/model/user.model';
 import { UserSocialProfileService } from '../user-social-profile.service';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 import { Message } from '../model/message.model';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'xp-social-profile',
@@ -22,10 +23,16 @@ export class SocialProfileComponent implements OnInit{
   showingMessage: Message | undefined;
 
   selectedRecipientId: number;
+  selectedRecipientName: string;
   messageTitle: string;
   messageContent: string;
 
   messageId: number | undefined;
+
+  chats: Message[][];
+  chatMaps: { id: number; messages: Message[] }[];
+  selectedChat: { id: number; messages: Message[] } | null = null;
+
 
   constructor(private service: UserSocialProfileService, 
     private authService: AuthService){ }
@@ -35,8 +42,45 @@ export class SocialProfileComponent implements OnInit{
       this.user = user;
       this.getSocialProfile(this.user.id);
       this.onInboxTabClick();
+      this.getChats();
+      
       // TODO - display message on see details in notification
     });
+  }
+
+  getChats(): void {
+    this.service.getChats().subscribe((result: Message[][]) => {
+      this.chats = result;
+      console.log(this.chats);
+      this.createChatMaps();
+      console.log(this.chatMaps);
+    });
+
+    /*
+    this.service.getChats().subscribe(
+    (response: Message[][]) => {
+      // Handle the response here
+      console.log(response);
+      // You can access individual lists like response[0], response[1], etc.
+    },
+    (error) => {
+      // Handle errors
+      console.error(error);
+    }
+  );
+  */
+  }
+
+  getLastMessageUser(chat: { id: number; messages: Message[] }): string {
+    const lastMessage = chat.messages[chat.messages.length - 1];
+    if (lastMessage && this.user) {
+      return this.user.id === lastMessage.senderId ? lastMessage.recipientUsername : lastMessage.senderUsername;
+    }
+    return 'No messages';
+  }
+
+  createChatMaps(): void {
+    this.chatMaps = this.chats.map((messages, index) => ({ id: index + 1, messages }));
   }
 
   getSocialProfile(id: number): void {
@@ -105,18 +149,20 @@ export class SocialProfileComponent implements OnInit{
         senderId: this.user.id,
         recipientId: this.selectedRecipientId,
         senderUsername: this.user.username,
+        recipientUsername: this.selectedRecipientName,
         title: this.messageTitle,
         sentDateTime: new Date(),
         readDateTime: new Date(),
         content: this.messageContent,
         isRead: false,
       };
-      this.service.sendMessage(message).subscribe(() => {
-      this.selectedRecipientId = 0;
-      this.messageTitle = '';
-      this.messageContent = '';
-      this.onSentTabClick();
-    });
+      this.service.sendMessage(message).pipe(
+        switchMap(() => this.service.getChats())
+      ).subscribe((result: Message[][]) => {
+        this.chats = result;
+        this.createChatMaps();
+        this.selectedChat = this.chatMaps.find(chat => chat.id === this.selectedChat?.id) || null;
+      });
     } 
   }
 
@@ -146,6 +192,17 @@ export class SocialProfileComponent implements OnInit{
   closePopup(): void {
     this.showingMessage = undefined;
     this.isMessageBoxActive = false;
+  }
+
+  selectChat(chat: { id: number; messages: Message[] }): void {
+    this.getChats();
+    this.selectedChat = chat;
+    const lastMessage = chat.messages[chat.messages.length - 1];
+    if(lastMessage && this.user) {
+      this.selectedRecipientId = this.user.id === lastMessage.senderId ? lastMessage.recipientId! : lastMessage.senderId!;
+      this.selectedRecipientName = this.user.id === lastMessage.senderId ? lastMessage.recipientUsername : lastMessage.senderUsername;
+    }
+    
   }
 
 }

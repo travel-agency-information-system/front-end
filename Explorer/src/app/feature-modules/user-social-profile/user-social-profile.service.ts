@@ -45,4 +45,8 @@ export class UserSocialProfileService {
     return this.http.post<Message>(environment.apiHost + 'profile-messaging/send/', message);
   }
 
+  getChats(): Observable<Message[][]> {
+    return this.http.get<Message[][]>(environment.apiHost + 'profile-messaging/chats');
+  }
+
 }

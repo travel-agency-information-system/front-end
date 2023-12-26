@@ -1,6 +1,6 @@
 <div id="social-profile">
     <div id="topnav">
-        <button class="topnav-button" (click)="onInboxTabClick()">Inbox</button>
+        <button class="topnav-button" (click)="onInboxTabClick()">Chat</button>
         <button class="topnav-button" (click)="onProfileTabClick()">Profile</button>
         <button class="topnav-button" (click)="onSentTabClick()">Sent</button>
         <button class="topnav-button" (click)="onComposeTabClick()">Compose</button>
@@ -9,7 +9,21 @@
     <div id="tab-div">
         <!-- Inbox -->
         <div id="inbox-div" *ngIf="activeTab === 'inbox'">
-            <ul>
+            <!--Messages-->
+            <div>
+                <div *ngFor="let chat of chatMaps">
+                    <div class="chat-container">
+                        <div class="last-message">
+                            <div class="chat-preview-content" (click)="selectChat(chat)">
+                                <strong>{{ getLastMessageUser(chat) }}</strong> 
+                                <div>Title: {{ chat.messages[chat.messages.length - 1].title }}</div>
+                                <div>Content: {{ chat.messages[chat.messages.length - 1].content }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <ul>
                 <li class="message-list-item" *ngFor="let m of inbox">
                     <div class="message-card">
                         <div>
@@ -25,8 +39,101 @@
                         </div>
                     </div>
                 </li>
-            </ul>
+            </ul> -->
+            <div class="chat-display-div">
+                <div id="scrollable-div" *ngIf="selectedChat">
+                    <div class="chat-container">
+                      <div *ngFor="let message of selectedChat.messages">
+                        <div class="message">
+                            <div class="message-content-ind">
+                                <strong *ngIf="user?.id === message.senderId">You:</strong>
+                                <strong *ngIf="user?.id !== message.senderId">{{ message.senderUsername }}:</strong> {{ message.content }}
+                                <div>{{  message.sentDateTime | date: 'dd.MM.yyyy. HH:mm' }}</div>
+                                <div *ngIf="message.isRead">Read</div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="!selectedChat">Select a chat to display.</div>
+                <div id="compose-div">
+                    <form (ngSubmit)="sendMessage()">
+                        <div>
+                            <label id="recipient-lab">Recipient:</label>
+                            <br>
+                            <select  required [(ngModel)]="selectedRecipientId" name="recipient">
+                                <option *ngFor="let f of socialProfile.followers" [value]="f.id">{{ f.username }}</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label>Title:</label>
+                            <br>
+                            <input type="text" required [(ngModel)]="messageTitle" name="title">
+                        </div>
+        
+                        <div>
+                            <label>Content:</label>
+                            <br>
+                            <textarea id="content-area" required [(ngModel)]="messageContent" name="content"></textarea>
+                        </div>
+        
+                        <input id="send-button" type="submit" value="Send" >
+                        
+                    </form>
+                </div>
+            </div>
+            <div id="follow-div">
+                <div class="follow-table-div">
+                    <table class="follow-table">
+                        <caption class="follow-table-caption">Followers</caption>
+                        <thead>
+                            <th>Username</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let f of socialProfile.followers">
+                                <td class="follow-td">{{ f.username }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="follow-table-div">
+                    <table class="follow-table">
+                        <caption class="follow-table-caption">Followed</caption>
+                        <thead>
+                            <th>Username</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let f of socialProfile.followed">
+                                <td class="follow-td">{{ f.username }}</td>
+                                <td class="follow-td">
+                                    <button id="unfollow-button" (click)="onUnfollowClick(f.id)">Unfollow</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="follow-table-div">
+                    <table class="follow-table">
+                        <caption class="follow-table-caption">Available</caption>
+                        <thead>
+                            <th>Username</th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let f of socialProfile.followable">
+                                <td class="follow-td">{{ f.username }}</td>
+                                <td class="follow-td">
+                                    <button id="follow-button" (click)="onFollowClick(f.id)">Follow</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
+
+
 
         <!-- Follower table -->
         <div id="follow-div" *ngIf="activeTab === 'profile'">
