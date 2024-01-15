@@ -1,12 +1,12 @@
 <div id="tour-rating-form">
     <form class="rating-form" [formGroup]="tourRatingForm">
         <div class="center-container">
-            <br><br><p>Add new rating</p>
+            <br><br><p class="naslov">Add new rating</p>
             <!-- <mat-form-field>
                 <mat-label>Tour Id</mat-label>
                 <input matInput formControlName="tourId" type="number" [defaultValue]="0" min="0" placeholder="0"/>
             </mat-form-field> -->
-            <div>
+            <div class="forma">
                 <!--<mat-form-field>
                     <mat-label>Tour Date</mat-label>
                     <input matInput formControlName="tourDate" type="datetime"/>
@@ -24,7 +24,7 @@
                 
                 <mat-form-field>
                     <mat-label>Rating</mat-label>
-                    <input matInput formControlName="rating" type="number" [defaultValue]="1" min="1" max="5" placeholder="1"/>
+                    <input class="prviInput" matInput formControlName="rating" type="number" [defaultValue]="1" min="1" max="5" placeholder="1"/>
                     <!-- TODO -> radio buttons instead of input -->
                     <!-- <mat-radio-group formControlName="rating">
                         <mat-radio-button *ngFor="let rate of ratings" [value]="rate">{{rate}}</mat-radio-button>
