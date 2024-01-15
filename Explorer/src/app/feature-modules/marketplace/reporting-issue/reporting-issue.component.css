@@ -41,7 +41,7 @@ h1{
     background-color: #f8f8f8; /* Set a background color for the readonly state */
     border: none; /* Remove the border for the readonly state */
     cursor: not-allowed; /* Change the cursor to indicate that it's not editable */
-}
+  }
 
 #reporting-issues-form-container {
     display: flex;
