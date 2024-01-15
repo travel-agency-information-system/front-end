@@ -11,9 +11,13 @@
     flex-direction: column;
 }
 
-h1 {
-    font-family: 'Poppins', sans-serif;
-    font-size: large;
+
+h1{
+    font-size: 4vh;
+    color:#e67840;
+    padding: 1% 2.5%; 
+    margin: 0 auto;
+    font-weight: bold;
 }
 
 .mat-icon {
@@ -21,7 +25,7 @@ h1 {
 }
 
 #reporting-issue-details button {
-    background-color: #3B846B;
+    background-color: #E67840;
     font-family: 'Poppins', sans-serif;
     color: #ffffff;
     border: none;
@@ -30,10 +34,55 @@ h1 {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 15px;
+    margin-top: 0px;
 }
 
 .readonly-input {
     background-color: #f8f8f8; /* Set a background color for the readonly state */
     border: none; /* Remove the border for the readonly state */
     cursor: not-allowed; /* Change the cursor to indicate that it's not editable */
-  }
+}
+
+#reporting-issues-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    border: 2px solid #3B846B; 
+    border-radius: 10px;
+    background-color: #3B846B;
+    max-width: 420px; /* Set max-width to your preferred value */
+    margin: 0 auto; /* Center the container horizontally */
+}
+
+.readonly-input {
+    background-color: #f8f8f8;
+    border: none;
+    cursor: not-allowed;
+}
+
+.mat_form_filed{
+    border-radius: 5px;
+}
+
+.mat_label{
+    font-weight: 500;
+    color: #3B846B;;
+    font-family: 'Poppins', sans-serif;
+}
+
+.button{
+    height:5vh;
+    width: 100px;
+    color: white;
+    font-weight: 700;
+    font-size: 120%;
+    background-color: #E67840;
+    border-radius: 15px;
+    border: 1px solid #253B34;
+    cursor: pointer;
+}

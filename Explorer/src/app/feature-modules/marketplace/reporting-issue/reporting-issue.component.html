@@ -1,13 +1,13 @@
-<div id="reporting-issues">
+<div id="reporting-issues-form-container">
 <form [formGroup]="reportingIssueForm">
     <div id="reporting-issue-details">
         <h1>Report an Issue</h1>
-        <mat-form-field>
-            <mat-label>Category</mat-label>
+        <mat-form-field >
+            <mat-label class="mat_label">Category</mat-label>
             <input matInput formControlName="category" type="text"/>
         </mat-form-field>
         <mat-form-field>
-          <mat-label>Description</mat-label>
+          <mat-label class="mat_label">Description</mat-label>
           <textarea matInput
           cdkTextareaAutosize
           cdkAutosizeMinRows="1"
@@ -15,7 +15,7 @@
           cdkAutosizeMaxRows="5"></textarea>
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Priority</mat-label>
+            <mat-label class="mat_label">Priority</mat-label>
         <mat-select formControlName="priority">
           <mat-option *ngFor="let priority of [1, 2, 3, 4, 5]" [value]="priority">
             {{ priority }}
@@ -23,16 +23,16 @@
         </mat-select>
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Tour</mat-label>
+            <mat-label class="mat_label">Tour</mat-label>
             <mat-select formControlName="tourId">
                 <mat-option *ngFor="let tour of tours" [value]="tour.id">{{ tour.name }}</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Time</mat-label>
-            <input matInput formControlName="time" type="datetime" readonly class="readonly-input"/>
+            <mat-label class="mat_label">Time</mat-label>
+            <input matInput matInput [value]="formatDate(reportingIssueForm.value.time)" readonly class="readonly-input" />
         </mat-form-field>
-    <button color="primary" type="submit" (click)="addReportedIssue()" mat-raised-button>Done</button>
+    <button color="primary" type="submit" (click)="addReportedIssue()"  class="button">Report</button>
     </div>
 </form>
 </div>
