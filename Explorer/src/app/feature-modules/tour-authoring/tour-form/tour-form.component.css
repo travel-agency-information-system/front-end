@@ -48,6 +48,7 @@ option:checked{
     background-color: #E67840;
 }
 
+
 .button{
     width: auto;
     margin-left: 10px;
@@ -55,20 +56,24 @@ option:checked{
     padding: 0px 90px;
     margin-left:40px;
     width: 120px;
-    font-size: 100%; 
     color:#fff;
-    font-size:20px;
+    font-size:17px;
     background-color: #E67840;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     border-radius: 100px;
     cursor: pointer;
 }
+
+.button:hover{
+    background-color: #dc4900;
+
+}
 .buttonPlus{
     margin-top:8px;
     margin-right:140px;
-    height:42px;
+    height:40px;
     width: 10px;
-    font-size: 200%; 
+    font-size: 100%; 
     color:#fff;
     gap:120px;
     background-color: #E67840;
@@ -76,9 +81,12 @@ option:checked{
     border-radius: 1000px;
     cursor: pointer;  
 }
+.buttonPlus:hover{
+    background-color: #dc4900;
 
+}
 .subtitle{
-    font-size: 28px;
+    font-size: 20px;
     font-weight: bold;
   color:#E67840;
   font-style: bold;
@@ -111,6 +119,7 @@ option:checked{
     gap: 20px;
     flex-direction: row;
     justify-content: space-between;
+    
 }
 
 .routingButton2{
@@ -134,13 +143,15 @@ p{
   font-size: 4vh;
   color:#E67840;  
   font-weight:bold;
+  margin-left: 60%;
+  width:6cm
 }
 
 
 
 .bigger-tag{
 
-    font-size: 26px;
+    font-size: 20px;
     color:#E67840;
 }
 

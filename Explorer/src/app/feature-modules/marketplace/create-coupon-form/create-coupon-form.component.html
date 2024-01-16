@@ -1,22 +1,28 @@
+<html>
+<body>
+<div class="coupon">
 <div id="create-coupon-div">
     <form id="create-coupon-form" (ngSubmit)="onSubmitForm()">
         <fieldset id="create-coupon-fieldset">
-            <legend>Create coupon</legend>
-
-            <label for="discount-percentage">Discount percentage:</label>
-            <input id="discount-percentage" type="number" step="10" min="0" max="100" required [(ngModel)]="discountPercentage" name="discountPercentage">
-
-            <label for="expiration-date">Expiration date:</label>
-            <input id="expiration-date"  type="date" required [(ngModel)]="expirationDate" name="expirationDate">
-
+            <br>
+            <p class="para-t">Create coupon</p>
+            <br>
+            <mat-form-field>
+                <mat-label>Discount percentage</mat-label>
+            <input matInput type="number" step="10" min="0" max="100" required [(ngModel)]="discountPercentage" name="discountPercentage">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Expiration date</mat-label>
+            <input matInput type="date" required [(ngModel)]="expirationDate" name="expirationDate">
+        </mat-form-field>
             <div class="checkbox-container">
                 <input id="is-global"  type="checkbox" checked="checked" [(ngModel)]="isGlobal" name="isGlobal">
-                <label id="is-global-label" for="is-global">Is global</label>
+                <label >Is global</label>
             </div>
 
             <!-- Add available tours -->
             <div id="available-tours-div" *ngIf="!isGlobal">
-                <label>Available tours:</label>
+                <label class="available">Available tours:</label>
                 <ul>
                     <li class="tour-name" *ngFor="let t of tours"> 
                         <div class="radio-container">
@@ -27,9 +33,12 @@
                 </ul>
             </div>
             <div class="button-container">
-                <input id="submit-button" class="update-button" type="submit" value="Create">
-                <button type="button" class="cancel-button" (click)="cancelUpdate()">Cancel</button>
+                <button  class="button" type="submit" mat-raised-button>Create</button>
+                <button type="button" class="button" (click)="cancelUpdate()" mat-raised-button>Cancel</button>
             </div>        
         </fieldset>
     </form>
 </div>
+</div>
+</body>
+</html>

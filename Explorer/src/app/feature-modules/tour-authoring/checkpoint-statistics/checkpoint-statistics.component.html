@@ -1,19 +1,20 @@
-<div>
-        <h1>Tour statistic</h1>
-        <div>
-            <p>{{tour.name}}</p>
-            <p>{{tour.description}}</p>
-            <p>{{tour.price}}</p>
-            <p>{{tour.demandignessLevel}}</p>
-        </div>
-        <div>
-            <div>
-                <canvasjs-chart [options]="chartOptionsCheckpoints" [styles]="{width: '50%', height:'360px'}"></canvasjs-chart>    
-            </div>
-            <div>
-                <canvasjs-chart [options]="chartOptionsCheckpoints2" [styles]="{width: '50%', height:'360px'}"></canvasjs-chart>    
-            </div>
-        </div>
-</div>
+<body>
+        <h1>Checkpoint statistics</h1>
+        <br>
+        <div class="analytics-container">
+            <br>
+            <h3 class="orange-h3"><b>Tour: </b>{{tour.name}}</h3>
 
+            <h3 class="orange-h3"><b>About tour: </b>{{tour.description}}</h3>
+            <br>
+        </div>
+        <br>
+        <br>
+        <div class="chart-container">
+                <canvasjs-chart [options]="chartOptionsCheckpoints"  class="chart"></canvasjs-chart>    
+
+                <canvasjs-chart [options]="chartOptionsCheckpoints2"  class="chart"></canvasjs-chart>    
+        </div>
+
+</body>
 

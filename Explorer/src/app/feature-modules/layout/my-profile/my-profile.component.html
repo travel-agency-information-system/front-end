@@ -2,6 +2,7 @@
     <mat-drawer-container autosize>
         <mat-drawer #drawer class="sidenav" mode="side" opened="true">
             <!-- ADMIN -->
+            <div class="scroller">
             <div *ngIf="user && user.role === 'administrator'">
                 <div class="sidenav-item"> 
                     <button [routerLink]="['accounts']">Accounts management</button>
@@ -21,6 +22,10 @@
                 </div>
                 <div class="sidenav-item"> 
                     <button [routerLink]="['reported-issues']">Reported issues</button>
+                    <div class="horizontal-divider"></div>
+                </div>
+                <div class="sidenav-item"> 
+                    <button [routerLink]="['tour-rating']">Tour Rating</button> 
                     <div class="horizontal-divider"></div>
                 </div>
             </div>
@@ -44,16 +49,6 @@
             
             <!-- TOURIST only -->
             <div *ngIf="user && user.role === 'tourist'">
-                <!-- 
-                <div class="sidenav-item">
-                    <button [routerLink]="['shopping-cart']">Cart({{ cartItemCount }})</button>
-                    <div class="horizontal-divider"></div>
-                </div>
-                <div class="sidenav-item">
-                    <button [routerLink]="['tour-overview']">Tours</button>
-                    <div class="horizontal-divider"></div>
-                </div>
-             -->
                 <div class="sidenav-item"> 
                     <!-- Trip history  -->
                     <button [routerLink]="['purchased-tours']">My Purchased Tours</button>
@@ -65,6 +60,10 @@
                 </div>
                 <div class="sidenav-item"> 
                     <button [routerLink]="['private-tour-blogs']">Private tour blogs</button>
+                    <div class="horizontal-divider"></div>
+                </div>
+                <div class="sidenav-item"> 
+                    <button [routerLink]="['composite-list']">My Campaigns</button>
                     <div class="horizontal-divider"></div>
                 </div>
                 <div class="sidenav-item"> 
@@ -84,34 +83,31 @@
                     <div class="horizontal-divider"></div>
                 </div>
                 <div class="sidenav-item">
-                    <button [routerLink]="['checkpoint']">Manage checkpoints</button>
-                    <div class="horizontal-divider"></div>
-                </div>
-                <div class="sidenav-item">
                     <button [routerLink]="['map-object']">Manage Map Objects</button>
                     <div class="horizontal-divider"></div>
-                </div>  
-            </div>
-
-            <!-- ALL USERS -->
-            <div *ngIf="user">
+                </div>
                 <div class="sidenav-item"> 
                     <button [routerLink]="['tour-rating']">Tour Rating</button> 
                     <div class="horizontal-divider"></div>
                 </div>
+            </div>
+
+            <!-- ALL USERS -->
+            <div *ngIf="user">
                 <div class="sidenav-item"> 
                     <button [routerLink]="['social-profile']">Social profile</button> 
                     <div class="horizontal-divider"></div>
                 </div>
                 <div class="sidenav-item"> 
                     <button [routerLink]="['notifications']">Notifications</button> 
-                    <div class="horizontal-divider"></div>
+                    <div *ngIf="user && user.role === 'author' || user.role === 'administrator'" class="horizontal-divider"></div>
                 </div>
             </div>
+        </div>
         </mat-drawer>
       
         <mat-drawer-content>
-            <div class="sidenav-content">
+            <div id="sidenav-content">
                 <div>
                     <div class="toggle-button-position">
                         <button class="toggle-button" (click)="drawer.toggle()" mat-icon-button>
@@ -119,11 +115,8 @@
                         </button>
                     </div>
 
-                    <div class="header">
-                        <!-- <h1>Content header</h1> -->
-                    </div>
                 </div>
-                <div class="content">
+                <div id="content" class="scroller">
                     <router-outlet></router-outlet>
                 </div>
             </div>

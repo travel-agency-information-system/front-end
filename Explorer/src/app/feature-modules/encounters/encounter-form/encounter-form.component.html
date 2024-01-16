@@ -1,7 +1,7 @@
 <body><div id="encounter-form">
     <br>
     <br>
-    <p>Encounter form</p>
+    <p>Create encounter</p>
     <br>
     <form [formGroup]="encounterForm">
     <div >
@@ -23,28 +23,18 @@
                 <input matInput formControlName="xp" type="number" min="1" />
             </mat-form-field>    
         </div>
-        <div>
-            <span>
-            <mat-form-field>
-            <mat-label>Longitude</mat-label>
-            <input matInput formControlName="longitude" type="number" />
-            </mat-form-field>
 
-            <mat-form-field>
-            <mat-label>Latitude</mat-label>
-            <input matInput formControlName="latitude" type="number" />
-        </mat-form-field>
-    </span>
-        </div>
         <div *ngIf="edit==false">
-            <span>
-            <span class="type">Type:</span>
-            <select formControlName="type" (change)="onChange()">
-                <option  value="Misc" >Misc</option>
-                <option  value="Location">Hidden location</option>
-                <option  value="Social">Social</option>
-            </select>
-        </span>
+            <mat-form-field>
+                <mat-label>Type</mat-label>
+
+            <mat-select formControlName="type" (selectionChange)="onChange()">
+                <mat-option  value="Misc" >Misc</mat-option>
+                <mat-option  value="Location">Hidden location</mat-option>
+                <mat-option  value="Social">Social</mat-option>
+            </mat-select>
+        </mat-form-field>
+
         </div>
         <div *ngIf="type=='Social'">
         <mat-form-field>
@@ -59,6 +49,7 @@
         </mat-form-field>
         </div>
         <div class="map" *ngIf="type=='Location'">
+            <p class="simg">Select location of the image that should be found!</p>
             <xp-map (mapClick)="onMapClick($event)"></xp-map>
         </div>
         <div *ngIf="type=='Location'">
@@ -76,9 +67,14 @@
         </div>
         <div *ngIf="type=='Location'">
 
-            <span class="type">Image:</span>
             <br>
-            <input type="file" title="" (change)="onImageSelected($event)" id="fileInput"/>
+            <input type="file" title="" (change)="onImageSelected($event)" class="file-input" multiple #fileUpload/>
+            <div class="file-upload">
+                <button mat-flat-button class="upload-btn" (click)="fileUpload.click()">
+                    <mat-icon>insert_photo</mat-icon>
+                    <span>Upload images</span>
+                </button>
+            </div>
 
             <div class="image-container" *ngIf="imagePreview.length > 0">
                 <img *ngFor="let image of imagePreview" [src]="image" alt="Image"

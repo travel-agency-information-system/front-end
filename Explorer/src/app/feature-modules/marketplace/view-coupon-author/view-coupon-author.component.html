@@ -1,42 +1,52 @@
-<div>
-    <button id="create-coupon-button" (click)="onCreateCoupnClick()">Create coupon</button>
-    <div id="coupons-div">
-        <ul class="coupons-list">
-            <li *ngFor="let c of coupons">
+<div id="coupon-div">
+    <br>
+    <h1 class="title">My coupons</h1>
+    <button id="create-coupon-button" (click)="onCreateCoupnClick()" *ngIf="!isEditing">Create coupon  ➕</button>
+    <div id="coupons-div" *ngIf="!isEditing && coupons && coupons.length > 0">
+        <table class="coupons-list">
+            <tr *ngFor="let c of coupons"><td>
                 <div class="coupons-card">
+                    <table>
+                        <tr><td>
                     <div class="coupon-content">
                         <div class="label-data-div code-label">
                             <span class="label">Code:</span>
-                            <span class="data">{{ c.code }}</span>
+                            <span class="data"> {{ c.code }}</span>
                         </div>
                         <div class="label-data-div discount-label">
                             <span class="label">Discount:</span>
-                            <span class="data">{{ c.discountPercentage }}%</span>
+                            <span class="data" style="font-size: 150%">  {{ c.discountPercentage }} %</span>
                         </div>
                         
                         <div class="label-data-div expiration-label">
-                            <span class="label">Expiration Date:</span>
+                            <span class="label">Expiration Date: </span>
                             <span class="data">
-                                {{ c.expirationDate | date: 'dd.MM.yyyy.'}} <i class="material-icons icon-schedule">schedule</i> {{ c.expirationDate | date: 'HH:mm'}}
+                                {{ c.expirationDate | date: 'dd.MM.yyyy.'}}  🕗 {{ c.expirationDate | date: 'HH:mm'}}
                              </span>                                                
                         </div>
+                        <br>
                         <div class="label-data-div status-label">
-                            <span class="data">{{ getGlobalStatusText(c.isGlobal) }}</span>
+                            <span class="data">{{ getGlobalStatusText(c.isGlobal, c.tourId || 0) }}</span>
                         </div>
                     </div>
+                     </td> 
+                     <td>
+                        <label class="emoji">🏷️</label>
+                     </td>
+                      </tr>
+                </table>
                     <div class="coupon-buttons">
-                        <div>
-                            <button (click)="editCoupon(c)">
-                                <mat-icon>edit</mat-icon> 
+                            <button mat-raised-button class="button-table" (click)="editCoupon(c)">
+                               Edit ✏️
                             </button>
-                            <button (click)="deleteCoupons(c.id)">
-                                <mat-icon>delete</mat-icon> 
+                            <button mat-raised-button class="button-table" (click)="deleteCoupons(c.id)">
+                                Delete 🗑️
                             </button>
-                        </div>
                     </div>
                 </div>
-            </li>
-        </ul>
+           </td>
+         </tr>
+        </table>
     </div>
 
 

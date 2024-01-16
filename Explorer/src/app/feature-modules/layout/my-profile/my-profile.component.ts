@@ -10,7 +10,6 @@ import { MarketplaceService } from '../../marketplace/marketplace.service';
 })
 export class MyProfileComponent implements OnInit {
   user: User | undefined;
-  header: string = "My profile";
   cartItemCount: number = 0;
 
   constructor(private authService: AuthService, private marketplaceService: MarketplaceService){}

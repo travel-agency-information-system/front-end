@@ -31,7 +31,7 @@ export class CheckpointSecretFormComponent implements OnInit{
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=>{
       this.id=params['id'];
-      if(this.id>0)
+      if(this.id != 0)
       {
         this.getCheckpoint(this.id);
       }

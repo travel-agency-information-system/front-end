@@ -1,62 +1,77 @@
 <div id="notification" >
-    <hr>
-    <div>
-      <div id="content">
-        <div id="notifications-table">
-          <p class="new-notif-number" *ngIf="hasNew">You have {{numberNew}} new notifications, {{numberAll}} notifications overall </p>
-          <p class="new-notif-number" *ngIf="!hasNew">You have {{numberAll}} notifications </p>
-          <div style="overflow-x: hidden;">
-            <div style="border: 2px solid #3B846B;">
-              <div class="table-wrapper">
-                <table>
-                  <thead>
-                    <tr>
-                      <th> Notifications </th>
-                      <th>
-                        <button class="dismiss-all-button" *ngIf="hasNew" (click)="dismissAll()">
-                          Dismiss all
+  <div>
+    <div id="content" >
+      <div id="notifications-table">
+        <div class="stat">
+
+          <div class="statistics-div">
+            <p class="emoji">📪</p>
+            <div class="statistics">
+                <p class="number">{{numberNew}}</p>
+                <p class="text" > new notifications!</p>
+            </div>
+        </div>
+        <div class="statistics-div">
+          <p class="emoji">📬</p>
+          <div class="statistics">
+              <p class="number" >{{numberAll}}</p>
+              <p class="text" > notifications overall!</p>
+          </div>
+      </div>
+        </div>
+        <br><br>
+        <div style="overflow-x: hidden; overflow-y: hidden;" *ngIf="notifications">
+          <div>
+            <div class="table-wrapper" style="overflow-x: hidden; overflow-y: hidden;">
+              <table>
+                <thead>
+                  <tr>
+                    <th class="thc"> Notifications </th>
+                    <th class="thc2">
+                      <button class="dismiss-all-button" *ngIf="hasNew" (click)="dismissAll()">
+                        Dismiss all  ❌
+                      </button>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let n of notifications" color="primary" class="tr-notification" (click)="selectNotification(n)">
+                    <td>
+                      <div class="details">
+                        <p class="post-content" style="width: 55%;">{{n.description}}</p>
+                        <p class="new" *ngIf="!n.isRead">New</p>
+                      </div>
+                      <div class="date-and-dissmiss-div">
+                        <p class="date-info">{{n.creationTime | date: 'dd.MM.yyyy  HH:mm'}}</p>
+                        
+                        <a class="see-details" *ngIf="reportedIssueNotificationType(n)" href="/my-profile/reported-issues/{{n.foreignId}}" (click)="dismissOne(n)">
+                          see details
+                        </a>
+                        
+                        <a class="see-details" *ngIf="messageNotificationType(n)" href="/my-profile/social-profile" (click)="dismissOne(n)">
+                          see details
+                        </a>
+
+                      </div>
+                    </td>
+                    <td>
+                      <div class="buttons-div">
+                        <button class="button-table" (click)="deleteNotification(n.id || 0)" mat-raised-button>
+                          Delete🗑️
                         </button>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let n of notifications" color="primary" (click)="selectNotification(n)">
-                      <td>
-                        <div class="details">
-                          <p class="post-content" style="width: 55%;">{{n.description}}</p>
-                          <p class="new" *ngIf="!n.isRead">New</p>
-                        </div>
-                        <div class="date-and-dissmiss-div">
-                          <p class="date-info">{{n.creationTime | date: 'dd.MM.yyyy  HH:mm'}}</p>
-                          
-                          <a class="see-details" *ngIf="reportedIssueNotificationType(n)" href="/reported-issues/{{n.foreignId}}" (click)="dismissOne(n)">
-                            see details
-                          </a>
-                          
-                          <a class="see-details" *ngIf="messageNotificationType(n)" href="/social-profile" (click)="dismissOne(n)">
-                            see details
-                          </a>
+                        <a class="dismiss" *ngIf="!n.isRead" href="/notifications"  (click)="dismissOne(n)">
+                          dismiss
+                        </a>
+                      </div>
+                    </td>  
+                  </tr>
+                </tbody>
+              </table>
 
-                        </div>
-                      </td>
-                      <td>
-                        <div class="buttons-div">
-                          <button color="accent" (click)="deleteNotification(n.id || 0)" mat-icon-button>
-                              <mat-icon>delete</mat-icon>
-                          </button>
-                          <a class="dismiss" *ngIf="!n.isRead" href="/notifications"  (click)="dismissOne(n)">
-                            dismiss
-                          </a>
-                        </div>
-                      </td>  
-                    </tr>
-                  </tbody>
-                </table>
-
-              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 </div>

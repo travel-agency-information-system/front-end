@@ -1,3 +1,12 @@
+#tour-rating-form{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-family: 'Poppins', sans-serif;
+}
+
 button[color="primary"] {
     background-color: #3B846B;
 }
@@ -55,7 +64,10 @@ body {
 p {
     font-size: 20px;
 }
-
+.rating-div{
+    flex-direction: row;
+    margin-left: 10%;
+}
 .rating-form mat-form-field {
     width: 70%;
 }

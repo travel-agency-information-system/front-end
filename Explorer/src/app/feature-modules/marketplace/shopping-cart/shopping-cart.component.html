@@ -20,7 +20,7 @@
         </div>
     
         <div class="right-card">
-            <p class="total">Total<p>
+            <p class="total">Total  🛒<p>
             <hr>
             <div class="wallet-heading">Wallet Balance: {{adventureCoins}} AC</div>
             <div id="tour-details">
@@ -40,7 +40,7 @@
                         </tr>
                     </table>
                     <hr>
-                    <div *ngIf="cart" class="wallet-heading">Total price: {{ calculateTotalPrice() }}</div>
+                    <div *ngIf="cart" class="wallet-heading">💰  Total price: {{ calculateTotalPrice() }}</div>
                     <button color="primary" class='checkout-button' (click)="checkout()" mat-raised-button>Checkout</button>
                 </div>
                 <ng-template #emptyCart>

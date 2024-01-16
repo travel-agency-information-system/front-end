@@ -1,71 +1,73 @@
-<div style="background-color: #253B34; display: flex;">
-    <div class="tour">
-        <div style=" height: 5px"></div>
-        <h1 class="title">Find the tour that suits you the best</h1>
-        <span class="navbar-span">
-        <button class="filtersButton" (click)="scrollToFilters()">Filters</button>
-        <button class="filtersButton" (click)="recommendedFilters()">Recommended</button>
-        <button class="filtersButton" (click)="activeFilters()">Active</button>
-        </span>
-        <div class="tour-container">
-            <div class="tour-card" *ngFor="let tour of searchTours" (click)="openDetails(tour)">
-                <div class="image-container">
-                    <label *ngIf="!tour.isOnSale" class="originalprice"> 💰{{tour.price}} AC </label>
-                    <div class="prices">
-                        <label *ngIf="tour.isOnSale" class="Oldprice">💰{{tour.price}} AC</label>
-                        <label *ngIf="tour.isOnSale" class="price"> 💰{{tour.salePrice}} AC </label>
+<body>
+    <div style="background-color: #253B34; display: flex;">
+        <div class="tour">
+            <div style=" height: 5px"></div>
+            <h1 class="title">Find the tour that suits you the best</h1>
+            <span class="navbar-span">
+            <button class="filtersButton" (click)="scrollToFilters()">Filters</button>
+            <button class="filtersButton" (click)="recommendedFilters()">Recommended</button>
+            <button class="filtersButton" (click)="activeFilters()">Active</button>
+            </span>
+            <div class="tour-container">
+                <div class="tour-card" *ngFor="let tour of searchTours" (click)="openDetails(tour)">
+                    <div class="image-container">
+                        <label *ngIf="!tour.isOnSale" class="originalprice"> 💰{{tour.price}} AC </label>
+                        <div class="prices">
+                            <label *ngIf="tour.isOnSale" class="Oldprice">💰{{tour.price}} AC</label>
+                            <label *ngIf="tour.isOnSale" class="price"> 💰{{tour.salePrice}} AC </label>
+                        </div>
+                        <div class="sale">
+                            <label *ngIf="tour.isOnSale" class="discount"> -{{tour.discount}}% </label>
+                            <img class="last_minute" *ngIf="tour.isLastMinute && tour.isOnSale" src="../../../../assets/landing_page/last-minute-offer.png" alt="image1">
+                        </div>
+                        <img *ngIf="tour.checkpoint.pictures && tour.checkpoint.pictures.length > 0" [src]="getImageUrl(tour.checkpoint.pictures[0])" alt="Image1" class="tour-card-img">
+                        
                     </div>
-                    <div class="sale">
-                        <label *ngIf="tour.isOnSale" class="discount"> -{{tour.discount}}% </label>
-                        <img class="last_minute" *ngIf="tour.isLastMinute && tour.isOnSale" src="../../../../assets/landing_page/last-minute-offer.png" alt="image1">
+                    <div class="card-top">
+                      <label class="card-location-header">{{ getTourLocation(tour.id || 0) }}</label>
+                     <div *ngIf="tour.tourRating.length>0" style="height: auto; width: 22vh; display: flex; justify-content: end; margin-right: 5px;">
+                        <label style="color: white; font-size: 100%; font-weight: 400; margin-right: 4px;">{{averageGrade(tour)}}</label>
+                        <label *ngIf="+averageGrade(tour) < 1; else fullStar" class="star" data-text="&#9733;">&#9734;</label>
+                        <label *ngIf="+averageGrade(tour) < 2; else fullStar" class="star" data-text="&#9733;">&#9734;</label>
+                        <label *ngIf="+averageGrade(tour) < 3; else fullStar" class="star" data-text="&#9733;">&#9734;</label>
+                        <label *ngIf="+averageGrade(tour) < 4; else fullStar" class="star" data-text="&#9733;">&#9734;</label>
+                        <label *ngIf="+averageGrade(tour) < 5; else fullStar" class="star" data-text="&#9733;">&#9734;</label>
+                        <ng-template #fullStar><label class="star" data-text="&#9733;">&#9733;</label></ng-template>
+                      </div> 
+                      
                     </div>
-                    <img *ngIf="tour.checkpoint.pictures && tour.checkpoint.pictures.length > 0" [src]="getImageUrl(tour.checkpoint.pictures[0])" alt="Image1" class="tour-card-img">
-                    
-                </div>
-                <div class="card-top">
-                  <label class="card-location-header">{{ getTourLocation(tour.id || 0) }}</label>
-                 <div *ngIf="tour.tourRating.length>0" style="height: auto; width: 22vh; display: flex; justify-content: end; margin-right: 5px;">
-                    <label style="color: white; font-size: 100%; font-weight: 400; margin-right: 4px;">{{averageGrade(tour)}}</label>
-                    <label *ngIf="+averageGrade(tour) < 1; else fullStar" class="star" data-text="&#9733;">&#9734;</label>
-                    <label *ngIf="+averageGrade(tour) < 2; else fullStar" class="star" data-text="&#9733;">&#9734;</label>
-                    <label *ngIf="+averageGrade(tour) < 3; else fullStar" class="star" data-text="&#9733;">&#9734;</label>
-                    <label *ngIf="+averageGrade(tour) < 4; else fullStar" class="star" data-text="&#9733;">&#9734;</label>
-                    <label *ngIf="+averageGrade(tour) < 5; else fullStar" class="star" data-text="&#9733;">&#9734;</label>
-                    <ng-template #fullStar><label class="star" data-text="&#9733;">&#9733;</label></ng-template>
-                  </div> 
-                  
-                </div>
-                <h2 class="card-header">{{tour.name}}</h2>
-                <p style="color: white; margin-left: 10px; font-size: 90%; margin-bottom: 4px;">📍 Starting checkpoint: {{tour.checkpoint.name}}</p>
-                <p style="color: white; margin-left: 10px; font-size: 90%;">🏔️ Difficulty: {{tour.demandignessLevel}}</p>
-              </div>
-        </div>
-        <div class="filtersDiv" *ngIf="visibleFilters" id="filters">
-            <div class="top">
-                <div id="filter">
-                    <div class="label-and-select">
-                        <input style="font-size: 20px;" type="checkbox" [(ngModel)]="showOnlyOnSale" />
-                        <label>Show Only Tours on Sale</label>
-                    </div>
-                    <div class="label-and-select" *ngIf="showOnlyOnSale">
-                        <label for="sortOrder">Sort Order: </label>
-                        <select id="sortOrder" [(ngModel)]="sortOrder">
-                            <option value="asc">Ascending</option>
-                            <option value="desc">Descending</option>
-                        </select>
-                    </div>
-                </div>
-                <button mat-raised-button class="shopButton" (click)="cancelSearch()">Cancel filters</button>
+                    <h2 class="card-header">{{tour.name}}</h2>
+                    <p style="color: white; margin-left: 10px; font-size: 90%; margin-bottom: 4px;">📍 Starting checkpoint: {{tour.checkpoint.name}}</p>
+                    <p style="color: white; margin-left: 10px; font-size: 90%;">🏔️ Difficulty: {{tour.demandignessLevel}}</p>
+                  </div>
             </div>
-            <p class="disclaimer">Select place on the map and diameter of the area around that place to search tours nearby your desired location.</p>
-            <div class="search-controls">
-                <input type="range" [(ngModel)]="radius" min="100" max="10000" step="100" (input)="updateRadius()" />
-                <span>{{ radius }} meters</span>
-            </div>  
-            <div style="width: 80%; height: 75vh; position: relative;">
-                <xp-map (mapClick)="onMapClick($event)"></xp-map>
+            <div class="filtersDiv" *ngIf="visibleFilters" id="filters">
+                <div class="top">
+                    <div id="filter">
+                        <div class="label-and-select">
+                            <input style="font-size: 20px;" type="checkbox" [(ngModel)]="showOnlyOnSale" />
+                            <label>Show Only Tours on Sale</label>
+                        </div>
+                        <div class="label-and-select" *ngIf="showOnlyOnSale">
+                            <label for="sortOrder">Sort Order: </label>
+                            <select id="sortOrder" [(ngModel)]="sortOrder">
+                                <option value="asc">Ascending</option>
+                                <option value="desc">Descending</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button mat-raised-button class="shopButton" (click)="cancelSearch()">Cancel filters</button>
+                </div>
+                <p class="disclaimer">Select place on the map and diameter of the area around that place to search tours nearby your desired location.</p>
+                <div class="search-controls">
+                    <input type="range" [(ngModel)]="radius" min="100" max="10000" step="100" (input)="updateRadius()" />
+                    <span>{{ radius }} meters</span>
+                </div>  
+                <div style="width: 80%; height: 75vh; position: relative;">
+                    <xp-map (mapClick)="onMapClick($event)"></xp-map>
+                </div>
+                <button mat-raised-button class="apply" (click)="applyFilters()">Apply filters</button>
             </div>
-            <button mat-raised-button class="apply" (click)="applyFilters()">Apply filters</button>
         </div>
     </div>
-</div>
+    </body>

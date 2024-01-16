@@ -15,6 +15,7 @@ export class PreferenceComponent {
   shouldRenderTourForm: boolean = false;
   shouldEdit: boolean = false;
   user: User;
+  formToggle: boolean = false;
 
   
   constructor(private service: MarketplaceService, private authService: AuthService) { }
@@ -30,6 +31,7 @@ export class PreferenceComponent {
     this.service.deleteTourPreference(id).subscribe({
       next: () => {
         this.getPreference();
+        this.shouldRenderTourForm = true;
       },
     })
   }
@@ -40,11 +42,20 @@ export class PreferenceComponent {
         this.preferences = [];
         if(!(result.difficulty == null)){
           this.preferences.push(result);
+          this.shouldRenderTourForm = this.preferences.length < 1;
+        }
+        else{
+          this.shouldRenderTourForm = true;
         }
       },
       error: () => {
       }
     })
+  }
+
+  preferenceUpdated(): void {
+    this.getPreference();
+
   }
 
   onEditClicked(preference: TourPreference): void {

@@ -1,33 +1,35 @@
-<div class="purchased-tours-heading">
-    Your Purchases
-</div>
-<div id="tour" class="tours-container">
-    <div class="tour-cards-container">
-        <article class="tour-card" *ngFor="let t of purchasedTours" (click)="openDetails(t)">
-            <div class="tour-info">
-                <div class="tour-image">
-                    <div class="price-box">
-                        <p class="tour-price">{{ t.price }} AC</p>
-                    </div>
-                    <div class="rating-container">
-                        <p class="tour-rating">{{ calculateAverageRating(t.tourRatings) }}</p>
-                    </div>
-                    <img *ngIf="t.checkpoints && t.checkpoints.length > 0 && t.checkpoints[0].pictures && t.checkpoints[0].pictures.length > 0"
-                        [src]="getImageUrl(t.checkpoints[0].pictures[0])" alt="Checkpoint Image" class="checkpoint-image">
-                </div>
-                <div class="tour-details">
-                    <div class="tour-header">
-                        <h2 class="tour-name">{{ t.name }}</h2>
-                    </div>
-                    <p class="tour-description">{{ t.description }}</p>
-                    <div class="tour-demand-wrapper">
-                        <span class="demand-label">Difficulty Level: </span>
-                        <span class="tour-demand" [style.color]="getDemandColor(t.demandignessLevel)">
-                            {{ t.demandignessLevel }}
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </article>
+<div style=" overflow-y: hidden; background-color: #253B34; height: 100%; min-height: 100%; align-items: center; display: flex; flex-direction: column; justify-content: start; width: 100%;">
+    <div class="purchased-tours-heading">
+        My Purchased Tours
     </div>
+    <div class="tour-container">
+        <div class="tour-card" *ngFor="let tour of purchasedTours" (click)="openDetails(tour)">
+            <div class="image-container">
+                <label class="originalprice"> 💰{{tour.price}} AC </label>
+                <label class="difficulty">
+                    🏔️ Difficulty: <span [style.color]="getDemandColor(tour.demandignessLevel)" style="font-weight: 600;">{{tour.demandignessLevel}}</span>
+                </label>                  
+                <img *ngIf="tour.checkpoints[0].pictures && tour.checkpoints[0].pictures.length > 0" [src]="getImageUrl(tour.checkpoints[0].pictures[0])" alt="Image1" class="tour-card-img">
+                
+            </div>
+            <div class="card-top">
+              <label class="card-location-header">{{ getTourLocation(tour.id || 0) }}</label>
+             <div *ngIf="tour.tourRatings.length>0" style="height: auto; width: 22vh; display: flex; justify-content: end; margin-right: 5px;">
+                <label style="color: white; font-size: 100%; font-weight: 400; margin-right: 4px;">{{averageGrade(tour)}}</label>
+                <label *ngIf="+averageGrade(tour) < 1; else fullStar" class="star" data-text="&#9733;">&#9734;</label>
+                <label *ngIf="+averageGrade(tour) < 2; else fullStar" class="star" data-text="&#9733;">&#9734;</label>
+                <label *ngIf="+averageGrade(tour) < 3; else fullStar" class="star" data-text="&#9733;">&#9734;</label>
+                <label *ngIf="+averageGrade(tour) < 4; else fullStar" class="star" data-text="&#9733;">&#9734;</label>
+                <label *ngIf="+averageGrade(tour) < 5; else fullStar" class="star" data-text="&#9733;">&#9734;</label>
+                <ng-template #fullStar><label class="star" data-text="&#9733;">&#9733;</label></ng-template>
+              </div> 
+              
+            </div>
+            <h2 class="card-header">{{tour.name}}</h2>
+            <p style="color: #253B34; margin-left: 10px; font-size: 90%; margin-bottom: 4px;">📍 Starting checkpoint: {{tour.checkpoints[0].name}}</p>
+            <p style="color: #253B34; margin-left: 10px; font-size: 90%; height:auto; max-height:10vh; margin-bottom: 5px; margin-right:5px; margin-top:5px">{{tour.description}}</p>
+        </div>
+    </div>
+    
 </div>
+

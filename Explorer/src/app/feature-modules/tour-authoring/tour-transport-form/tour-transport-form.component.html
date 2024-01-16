@@ -3,7 +3,9 @@
         <thead>Types of transportation:</thead>
         <tbody>
             <tr *ngFor="let a of availableProfiles">
-                <td>{{a}}</td>
+                <td *ngIf="a=='driving'">🚗 {{a}}</td>
+                <td *ngIf="a=='walking'">🚶‍♂️ {{a}}</td>
+                <td *ngIf="a=='cycling'">🚲 {{a}}</td>
                 <td>
                     <button class="button" (click)="onAdd(a)" mat-raised-button>Add ➕</button>
                 </td>
@@ -15,7 +17,9 @@
         <thead>Chosen transportation:</thead>
         <tbody>
             <tr *ngFor="let a of chosenProfiles">
-                <td>{{a}}</td>
+                <td *ngIf="a=='driving'">🚗 {{a}}</td>
+                <td *ngIf="a=='walking'">🚶‍♂️ {{a}}</td>
+                <td *ngIf="a=='cycling'">🚲 {{a}}</td>
                 <td>
                     <button  class="button" (click)="onDelete(a)" mat-raised-button>Delete 🗑️</button>
                 </td>

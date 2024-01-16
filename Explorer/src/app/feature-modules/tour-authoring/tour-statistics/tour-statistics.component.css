@@ -12,13 +12,12 @@ div {
 
   h1 {
     font-size: 50px;
-    color: #E67840;
+    color: #184233;
     text-align: center;
     margin-top: 20px;
     margin-bottom: 30px;
     letter-spacing: 2px;
     font-weight: bold;
-    font-family: cursive;
   }
 
   .chart-container {
@@ -61,6 +60,7 @@ div {
 }
 
 .chart {
+  color:#184233;
   height: 360px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.2); /* Dodajemo efekat senke */
   border-radius: 12px; /* Povećavamo ispupčenost ivica */
@@ -73,8 +73,13 @@ div {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 100%;
-  background-color: white; /* Postavljanje belog pozadinskog boje */
+  width: 30%;
+  margin-left: auto;
+margin-right: auto;
+    background-color: #c0f1d0;
+    border-radius: 12px; /* Povećavamo ispupčenost ivica */
+    border: 2px solid #ddd;
+  
 }
 
 .analytics-item {
@@ -86,12 +91,22 @@ div {
   font-size: 20px;
   color: #3B846B;
   margin-bottom: 10px;
-  font-family: cursive;
 }
 
 .orange-h3 {
   font-size: 20px;
-  color: #E67840;
+  color: #184233;
   margin-bottom: 10px;
-  font-family: cursive;
+  
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('./login_background.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh; /* Set the height to 100vh (100% of the viewport height) */
+  display: flex; /* Use flexbox to center content vertically */
+  flex-direction: column;
 }

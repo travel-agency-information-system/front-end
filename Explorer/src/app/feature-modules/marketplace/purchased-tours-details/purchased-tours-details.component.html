@@ -1,65 +1,67 @@
-<div class="tour-card">
-    <div class="tour-header">
-        <div class="top-section">
-            <h2 class="tour-title">{{ tour.name }}</h2>
-            <div class="tags">
-                <span *ngFor="let tag of tour.tags" class="tag">#{{ tag }}</span>
-            </div>
-        </div>
-        <p class="tour-price">{{ tour.price }} AC</p>
-    </div>
-    <div class="tour-details">
-        <p class="subtitle">Information</p>
-        <div class="detail-row">
-            <div class="detail-label">Description:</div>
-            <div class="detail-value">{{ tour.description }}</div>
-        </div>
-        <div class="detail-row">
-            <div class="detail-label">Difficulty Level:</div>
-            <div class="detail-value" [style.color]="getDemandColor(tour.demandignessLevel)">{{ tour.demandignessLevel }}</div>
-        </div>
-    </div>
-    <div class="tour-details" *ngIf="tour.equipment && tour.equipment.length > 0">
-        <p class="subtitle">Required Equipment</p>
-        <div class="equipment-list">
-            <div *ngFor="let e of tour.equipment" class="equipment-item">
-                <div class="detail-row">
-                    <div class="detail-label">Name:</div>
-                    <div class="detail-value">{{ e.name }}</div>
-                </div>
-                <div class="detail-row">
-                    <div class="detail-label">Description:</div>
-                    <div class="detail-value">{{ e.description }}</div>
+<body>
+    <div class="tour-card">
+        <div class="tour-header">
+            <div class="top-section">
+                <h2 class="tour-title">{{ tour.name }}</h2>
+                <div class="tags">
+                    <span *ngFor="let tag of tour.tags" class="tag">#{{ tag }}</span>
                 </div>
             </div>
-            
+            <p class="tour-price">{{ tour.price }} AC</p>
         </div>
-    </div>
-    <div class="tour-details">
-        <p class="subtitle">Checkpoints</p>
-        <div class="checkpoint-list">
-            <div *ngFor="let c of tour.checkpoints" class="checkpoint-card">
-                <div class="details">
+        <div class="tour-details">
+            <p class="subtitle">Information</p>
+            <div class="detail-row">
+                <div class="detail-label">Description:</div>
+                <div class="detail-value">{{ tour.description }}</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Difficulty Level:</div>
+                <div class="detail-value" [style.color]="getDemandColor(tour.demandignessLevel)">{{ tour.demandignessLevel }}</div>
+            </div>
+        </div>
+        <div class="tour-details" *ngIf="tour.equipment && tour.equipment.length > 0">
+            <p class="subtitle">Required Equipment</p>
+            <div class="equipment-list">
+                <div *ngFor="let e of tour.equipment" class="equipment-item">
                     <div class="detail-row">
-                        <div class="check-point-name">{{ c.name }}</div>
+                        <div class="detail-label">Name:</div>
+                        <div class="detail-value">{{ e.name }}</div>
                     </div>
                     <div class="detail-row">
                         <div class="detail-label">Description:</div>
-                        <div class="detail-value">{{ c.description }}</div>
-                    </div>
-                    <div class="detail-row">
-                        <div class="detail-label">Location:</div>
-                        <div class="detail-value">{{ c.latitude.toFixed(2) }}, {{ c.longitude.toFixed(2) }}</div>
+                        <div class="detail-value">{{ e.description }}</div>
                     </div>
                 </div>
-                <div class="picture-container">
-                    <img *ngIf="c.pictures && c.pictures.length" [src]="getImageUrl(c.pictures[0])" width="80px" height="90px" alt="Checkpoint Image">
+                
+            </div>
+        </div>
+        <div class="tour-details">
+            <p class="subtitle">Checkpoints</p>
+            <div class="checkpoint-list">
+                <div *ngFor="let c of tour.checkpoints" class="checkpoint-card">
+                    <div class="details">
+                        <div class="detail-row">
+                            <div class="check-point-name">{{ c.name }}</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Description:</div>
+                            <div class="detail-value">{{ c.description }}</div>
+                        </div>
+                        <div class="detail-row">
+                            <div class="detail-label">Location:</div>
+                            <div class="detail-value">{{ c.latitude.toFixed(2) }}, {{ c.longitude.toFixed(2) }}</div>
+                        </div>
+                    </div>
+                    <div class="picture-container">
+                        <img *ngIf="c.pictures && c.pictures.length" [src]="getImageUrl(c.pictures[0])" width="80px" height="90px" alt="Checkpoint Image">
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="routing-button">
+            <button mat-raised-button class="navButtonBack" (click)="onBack()">Back</button>
+            <button mat-raised-button class="navButtonStart" (click)="tourExecution()">Take a Tour</button>
+        </div>
     </div>
-    <div class="routing-button">
-        <button mat-raised-button class="navButton" (click)="onBack()">Back</button>
-        <button mat-raised-button class="navButton" (click)="tourExecution()">Take a Tour</button>
-    </div>
-</div>
+</body>

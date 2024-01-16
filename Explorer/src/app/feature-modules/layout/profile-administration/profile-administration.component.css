@@ -172,3 +172,22 @@ div {
     width: 300px;
     height: 220px;
 }
+
+.encounter-button{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-family: 'Poppins', sans-serif;
+    width: auto;
+    margin-left: 10px;
+    margin-bottom: 15px;
+    padding: 0px 10px;
+    width: 120px;
+    font-size: 100%; 
+    color:#fff;
+    background-color: #E67840;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+}

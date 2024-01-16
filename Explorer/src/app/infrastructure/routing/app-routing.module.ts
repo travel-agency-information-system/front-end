@@ -65,6 +65,7 @@ import { TourStatisticsComponent } from 'src/app/feature-modules/tour-authoring/
 import { CheckpointStatisticsComponent } from 'src/app/feature-modules/tour-authoring/checkpoint-statistics/checkpoint-statistics.component';
 import { TouristCurrentPositionComponent } from 'src/app/feature-modules/tourist-current-position/tourist-current-position.component';
 import { ResetPasswordComponent } from '../auth/reset-password/reset-password/reset-password.component';
+import { VerificationSuccessComponent } from '../auth/verification-success/verification-success.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -77,7 +78,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'notifications', pathMatch: 'full'}, 
-      // TODO -> administrator should open accounts first
       //ADMIN
       { path: 'accounts', component: AccountsManagementComponent, canActivate: [AuthGuard],},
       { path: 'grade-review', component: GradeReviewComponent, canActivate: [AuthGuard], },
@@ -138,8 +138,6 @@ const routes: Routes = [
   {path: 'clubMembershipRequests/:id', component: ClubMembershipRequestComponent},
   {path: 'profile-info', component: ProfileAdministrationComponent},
   {path: 'accounts', component: AccountsManagementComponent, canActivate: [AuthGuard],},
-  {path: 'reported-issues', component: ReportedIssuesComponent, canActivate: [AuthGuard],},
-  {path: 'reported-issues/:id', component: ReportedIssuesComponent, canActivate: [AuthGuard],},
   {path: 'reporting-issues', component: ReportingIssueComponent, canActivate: [AuthGuard],},
   {path: 'checkpoint/:id', component: CheckpointComponent, canActivate: [AuthGuard]},
   {path: 'map-object', component: MapObjectComponent, canActivate: [AuthGuard]},
@@ -154,7 +152,6 @@ const routes: Routes = [
   {path: 'tour-details/:id', component: TourDetailsComponent, canActivate: [AuthGuard]},
   {path: 'blogs', component: BlogPostTableComponent, canActivate: [AuthGuard]},
   {path: 'blogs/:id', component: BlogPostComponent, canActivate: [AuthGuard]},
-  {path: 'my-blogs', component: BlogPostManagementComponent, canActivate: [AuthGuard]},
   {path: 'club-members/:id', component: ClubMembersComponent},
   {path: 'invitations', component: ClubInvitationsComponent},
   {path: 'tour-rating', component: TourRatingComponent, canActivate: [AuthGuard]},
@@ -194,7 +191,8 @@ const routes: Routes = [
   {path: 'tour-statistics', component: TourStatisticsComponent, canActivate: [AuthGuard], },
   {path: 'tour-checkpoint-statistics/:id', component: CheckpointStatisticsComponent, canActivate: [AuthGuard]},
   {path: 'current-location',component:TouristCurrentPositionComponent,canActivate:[AuthGuard]},
-  {path: 'reset-password', component: ResetPasswordComponent, canActivate: [AuthGuard]}
+  {path: 'reset-password', component: ResetPasswordComponent, canActivate: [AuthGuard]},
+  {path: 'verification-success', component: VerificationSuccessComponent}
 ];
 
 @NgModule({

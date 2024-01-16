@@ -1,13 +1,52 @@
+::ng-deep .mat-drawer-content {
+    scrollbar-width: thin !important;
+    scrollbar-color: #E67840 #B6D4AF !important;
+  }
+  
+.scroller::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  .scroller::-webkit-scrollbar-thumb {
+    background-color: #E67840; /* Color of the thumb */
+    border-radius: 10px; /* Rounded corners */
+    position: absolute;
+    left: 5px; 
+  }
+  
+  .scroller::-webkit-scrollbar-track {
+    background-color: #B6D4AF; /* Color of the track */
+    border-radius: 10px;
+    position: absolute;
+    left: 5px; 
+  }
+.scroller{
+    overflow-y: auto;
+    height: 100%;
+    position: relative;
+}
+
+:host {
+  display: block; /* Ensures the component is a block element */
+  height: 89.5%;  /* Set the desired fixed height */
+  overflow-y:hidden; /* Add vertical scrollbar if the content overflows the fixed height */
+}
 #my-profile {
-    height: 620px;
+    min-height: calc(100vh - 65px);
+    height: auto;
     width: 100%;
     font-family: 'Poppins', sans-serif;
 }
 
 .sidenav {
     padding: 20px;
+    padding-right: 5px;
+    padding-left: 10px;
     width: 15%;
     background-color: #B6D4AF;
+    overflow-y: hidden;
+    height: 100%;
+    overflow-x: hidden;
 }
 
 .sidenav-item {
@@ -58,14 +97,19 @@
     font-size: large;
 }
 
-.sidenav-content {
+#sidenav-content {
     display: flex;
     background-color: #F7F6DC;
     flex-direction: column;
-    height: 620px;
+    height: calc(100vh - 70px);
+
 }
 
-.content {
+#content {
     overflow-x: hidden;
     overflow-y: auto;
+    margin-top: 10px;
 }
+
+  
+  

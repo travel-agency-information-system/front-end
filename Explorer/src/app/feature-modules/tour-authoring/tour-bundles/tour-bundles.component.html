@@ -2,32 +2,65 @@
     <br>
     <br>
     <br>
-    <div class="tours-heading">My bundles</div>
-    <div id="tour-details">
-        <div>
-            <div class="tour-card" *ngFor="let b of tourBundles">
-                <div class="tour-info">
-                    <p>{{b.name}}, {{b.price}} AC</p>
-                    <p>{{b.status}}</p>
-                </div>
-                <div class="tours-card" *ngFor="let t of b.tours">
-                    <p>{{t.name}}</p>
-                    <p>{{t.description}}</p>
-                    <p>{{t.status}}</p>
-                </div>
-                <div class="tour-actions">
-                    <button color="accent" mat-icon-button (click)="deleteBundle(b.id || 0)" *ngIf="b.status !== 'Published'">
-                        <mat-icon>delete</mat-icon>
-                    </button>
-                    <button class="edit-button" (click)="editBundle(b)">Edit</button>
-                    <button class="edit-button" *ngIf="canPublish(b) && b.status !== 'Published'" (click)="publishBundle(b)">
-                        Publish
-                    </button>
-                    <button class="edit-button" *ngIf="b.status === 'Published'" (click)="archiveBundle(b)">
-                        Archive
-                    </button>                    
+    <div class="title-top">My bundles</div>
+    <br>
+    <br>
+       
+    <table class="tour-bundle-table">
+        <tr *ngFor="let tourBundle of tourBundles" class="tour-bundle">
+            <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                <div class="left">
+                    <div class="informations">
+                        <div class="title-container">
+                            <label class="title"> {{ tourBundle.name }} </label>
+                            <label class="status">status:  {{tourBundle.status}}</label>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+            <div class="tour-horizontal-container">
+                <div class="tour-card" *ngFor="let tour of tourBundle.tours" (click)="selectTour(tour)">
+                    <div class="image-container">
+                    <div class="prices">
+                        <label  class="Oldprice">💰{{tour.price}} AC</label>
+                    </div>
+                        <img *ngIf="tour.checkpoints && tour.checkpoints.length>0 && tour.checkpoints[0].pictures && tour.checkpoints[0].pictures.length > 0 " [src]="getImageUrl(tour.checkpoints[0].pictures[0])" alt="image1" class="tour-card-img" >
+                    </div>
+                    <div class="card-top"><h2 class="card-header">{{tour.name}}</h2>
+                     <div *ngIf="tour.tourRatings.length>0" style="height: auto; width: 22vh; display: flex; justify-content: end; margin-right: 5px;">
+                        <label style="color: white; font-size: 100%; font-weight: 400; margin-right: 4px;">{{averageGrade(tour)}}</label>
+                        <label *ngIf="+averageGrade(tour) < 1; else fullStar" class="star" data-text="&#9733;">&#9734;</label>
+                        <label *ngIf="+averageGrade(tour) < 2; else fullStar" class="star" data-text="&#9733;">&#9734;</label>
+                        <label *ngIf="+averageGrade(tour) < 3; else fullStar" class="star" data-text="&#9733;">&#9734;</label>
+                        <label *ngIf="+averageGrade(tour) < 4; else fullStar" class="star" data-text="&#9733;">&#9734;</label>
+                        <label *ngIf="+averageGrade(tour) < 5; else fullStar" class="star" data-text="&#9733;">&#9734;</label>
+                        <ng-template #fullStar><label class="star" data-text="&#9733;">&#9733;</label></ng-template>
+                      </div>
+                    </div>
+                    <p style="color: white; margin-left: 10px; font-size: 75%; margin-bottom: 4px;">status: {{tour.status}}</p>
+                    <p style="color: white; margin-left: 10px; font-size: 75%; margin-bottom: 4px;">🛈{{tour.description}}</p>
+                  </div>
+            </div>
+            <div class="manage-container">
+                <label class="tour-offer">Manage bandle</label>
+                <div class="tour-actions">
+
+                    <button (click)="deleteBundle(tourBundle.id || 0)" *ngIf="tourBundle.status !== 'Published'" mat-raised-button class="edit-button">
+                        Delete 🗑️
+                    </button>
+                    <button class="edit-button" (click)="editBundle(tourBundle)"  mat-raised-button>Edit ✏️</button>
+                    <button  mat-raised-button class="edit-button" *ngIf="canPublish(tourBundle) && tourBundle.status !== 'Published'" (click)="publishBundle(tourBundle)">
+                        Publish
+                    </button>
+                    <button  mat-raised-button class="edit-button" *ngIf="tourBundle.status === 'Published'" (click)="archiveBundle(tourBundle)">
+                        Archive
+                    </button>   
+                </div>
+            </div>
+            <div class="price-container">
+                <label class="OldPrice">💰{{priceSum(tourBundle)}} AC</label>
+                <label class="total-price">💰{{tourBundle.price}} AC</label>
+            </div>
+        </tr>
+    </table>
 </div>

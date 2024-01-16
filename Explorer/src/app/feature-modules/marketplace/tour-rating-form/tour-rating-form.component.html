@@ -48,9 +48,6 @@
                     <div class="image-container" *ngIf="shouldEdit && rating.imageNames && rating.imageNames.length > 0">
                         <img *ngFor="let imageName of rating.imageNames" [src]="getImageUrl(imageName)" alt="Image">
                     </div>
-                    <!-- <button id="picture" (click)="removeImage(image)" mat-icon-button>
-                        <mat-icon>delete</mat-icon>
-                    </button> -->
                 </div>
                 <button *ngIf="!shouldEdit" color="primary" type="submit" (click)="addTourRating()" mat-raised-button>Done</button>
             </div>

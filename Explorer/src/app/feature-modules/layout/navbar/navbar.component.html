@@ -9,13 +9,10 @@
             <button class="button" *ngIf="user && user.role === 'author'" mat-raised-button [routerLink]="['sales']">Sales</button>
             <button class="button" *ngIf="user && user.role === 'author'" mat-raised-button [routerLink]="['tour-statistics']">Tour Statistics</button>
 
-            
             <button class="button" *ngIf="user && user.role === 'tourist'" mat-raised-button [routerLink]="['tour-overview']">Explore Tours</button>
             <button class="button" *ngIf="user && user.role === 'tourist'" mat-raised-button [routerLink]="['tour-bundles']">Bundle Offers</button>
             <button class="button" *ngIf="user && user.role === 'tourist'" mat-raised-button [routerLink]="['plan-your-trip']">Plan your trip</button>
             <button class="button" *ngIf="user && user.role === 'tourist'" mat-raised-button [routerLink]="['composite-creation']">Create Campaign</button>
-            <button class="button" *ngIf="user && user.role === 'tourist'" mat-raised-button [routerLink]="['composite-list']">Explore Campaigns</button>
-            <button class="button" *ngIf="user && user.role === 'tourist'" mat-raised-button [routerLink]="['tourist-encounter-form']">Create encounter</button>
 
             <button class="button" *ngIf="user && user.role === 'tourist'" mat-raised-button [routerLink]="['shopping-cart']">Cart({{ cartItemCount }})</button>
             <button class="button" *ngIf="user && user.username !== ''" mat-raised-button [routerLink]="['my-profile']">My profile</button> 

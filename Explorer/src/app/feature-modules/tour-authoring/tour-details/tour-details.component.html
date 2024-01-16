@@ -16,7 +16,7 @@
             </tr>
             <tr>
                 <th>Price:</th>
-                <td>   {{tour.price}} 🪙</td>
+                <td>   {{tour.price}} 💰</td>
             </tr>
             <tr>
                 <th>Status:</th>
@@ -77,7 +77,7 @@
     <p>Checkpoints 📍</p>
 
     <br>
-    <div >
+    <div class="scroller">
             <table class="tablecards">
                 <tbody>
                     <tr *ngFor="let e of tour.checkpoints">
@@ -216,12 +216,17 @@
                                 <button mat-raised-button class="backButton" (click)="onBack()">Back</button>
                             </span>
                         </td>
+
                         <td>
                             <span>
-                                <button mat-raised-button *ngIf="tour.status == 'Published'"  class="buttonTourStatistics"  (click)="goToTourStatistics()">Tour statistics</button>
+                                <button mat-raised-button *ngIf="tour.status == 'Published'"  class="buttonTourStatistics"  (click)="goToTourStatistics()">Checkpoint statistics</button>
                             </span>
                         </td>
-                        
+                        <td>
+                            <span>
+                                <button mat-raised-button *ngIf="tour.status == 'Published'"  class="buttonTourStatistics"  (click)="goTourStatistics()">Tour statistics</button>
+                            </span>
+                        </td>
                         <td> 
                             <span>
                                 <button *ngIf="tour.status != 'Published'" mat-raised-button class="archiveButton" (click)="publishTour()" >Publish 🚀</button>                        

@@ -159,7 +159,7 @@ export class TourComponent implements OnInit{
   onAddClicked(): void {
     this.shouldEdit = false;
     this.shouldRenderTourForm = true;
-    this.router.navigate([`tour-form/-1`]);
+    this.router.navigate([`tour-form/0`]);
 
   }
   openDetails(t:Tour): void {

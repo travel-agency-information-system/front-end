@@ -1,53 +1,53 @@
-<div id="tour">
-    <p>Preference</p>
-    <hr>
-    <div id="tour-details">
-    <div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Difficulty</th>
-                    <th>Walk</th>
-                    <th>Bike</th>
-                    <th>Car</th>
-                    <th>Boat</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let t of preferences">
-                    <td>{{t.difficulty}}</td>
-                    <td>{{t.walk}}</td>
-                    <td>{{t.bike}}</td>
-                    <td>{{t.car}}</td>
-                    <td>{{t.boat}}</td>
-                    <td>{{t.tags}}</td>
-                    <td>
-                        <button color="accent" (click)="deletePreference(t.id || 0)" mat-icon-button>
-                            <mat-icon>delete</mat-icon>
-                        </button>
-                        <button color="primary" (click)="onEditClicked(t)" mat-icon-button>
-                            <mat-icon>edit</mat-icon>
-                        </button>
-                    </td>
-                </tr>
-                
-                <tr *ngIf="preferences.length > 0">
-                    <button color="primary" (click)="onEditClicked(preferences[0])" mat-icon-button>
-                      <mat-icon>edit</mat-icon>
-                    </button>
-                  </tr>
-                  <tr *ngIf="preferences.length === 0">
-                    <button color="primary" (click)="onAddClicked()" mat-icon-button>
-                      <mat-icon>add</mat-icon>
-                    </button>
-                  </tr>
-            </tbody>
-        </table>
+<body> 
+    <div class="container">
+        <h1>Tour preferences</h1>
+        <label class="tellUs">Tell us your preferences when traveling</label>
+
+
+        <div id="tour" *ngIf="!shouldRenderTourForm">
+            <hr>
+            <br>
+            Your current preferences
+            <br><br>
+            <div id="tour-details">
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Difficulty</th>
+                            <th>Walk</th>
+                            <th>Bike</th>
+                            <th>Car</th>
+                            <th>Tags</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let t of preferences">
+                            <td>{{t.difficulty}}</td>
+                            <td>{{t.walk}}</td>
+                            <td>{{t.bike}}</td>
+                            <td>{{t.car}}</td>
+                            <td>{{t.tags}}</td>
+                            <td>
+                                <button color="accent" (click)="deletePreference(t.id || 0)" mat-icon-button>
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                                <button color="primary" (click)="onEditClicked(t)" mat-icon-button>
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+                    
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+        <div>
+            <xp-preference-form *ngIf="shouldRenderTourForm" [shouldEdit]="shouldEdit" [preference]="selectedTour" (preferenceUpdated)="getPreference()"></xp-preference-form>
+        </div>
+
+
     </div>
-    <div>
-        <xp-preference-form *ngIf="shouldRenderTourForm" [shouldEdit]="shouldEdit" [preference]="selectedTour" (preferenceUpdated)="getPreference()"></xp-preference-form>
-    </div>
-    </div>
-</div>
+</body>

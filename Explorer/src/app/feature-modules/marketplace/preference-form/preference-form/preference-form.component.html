@@ -1,9 +1,11 @@
 <div id="preference-form">
     <form [formGroup]="preferenceForm">
         <div id="preference-form-details">
-            <table>
+            <hr width="100%">
+            Select your preferred tour difficulty
+            <table class="pref-table">
                 <tr>
-                    <td>Difficulty</td>
+                    <td>Difficulty: </td>
                     <td>
                        
                     <select formControlName="difficulty">
@@ -15,22 +17,50 @@
                     
                 </tr>
             </table>
-            <mat-form-field>
-                <mat-label>Walk</mat-label>
-                <input matInput formControlName="walk" type="number" [defaultValue]="0" min="0" max="3" placeholder="0"/>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Bike</mat-label>
-                <input matInput formControlName="bike" type="number" [defaultValue]="0" min="0" max="3" placeholder="0"/>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Car</mat-label>
-                <input matInput formControlName="car" type="number" [defaultValue]="0" min="0" max="3" placeholder="0"/>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Boat</mat-label>
-                <input matInput formControlName="boat" type="number" [defaultValue]="0" min="0" max="3" placeholder="0"/>
-            </mat-form-field>
+            <hr width="100%">
+            Rate the modes of transportation from 1 to 3 according to your preferences
+            <table>
+                <tr>
+                    <td>Walk:</td>
+                    <td>
+                        <input type="radio" formControlName="walk" value="1" [checked]="preferenceForm.get('walk')?.value === 1"> 1
+                    </td>
+                    <td>
+                        <input type="radio" formControlName="walk" value="2" [checked]="preferenceForm.get('walk')?.value === 2"> 2
+                    </td>
+                    <td>
+                        <input type="radio" formControlName="walk" value="3" [checked]="preferenceForm.get('walk')?.value === 3"> 3
+                    </td>
+                </tr>
+                <tr>
+                    <td>Car:</td>
+                    <td>
+                        <input type="radio" formControlName="car" value="1"> 1
+                    </td>
+                    <td>
+                        <input type="radio" formControlName="car" value="2"> 2
+                    </td>
+                    <td>
+                        <input type="radio" formControlName="car" value="3"> 3
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td>Bike:</td>
+                    <td>
+                        <input type="radio" formControlName="bike" value="1"> 1
+                    </td>
+                    <td>
+                        <input type="radio" formControlName="bike" value="2"> 2
+                    </td>
+                    <td>
+                        <input type="radio" formControlName="bike" value="3"> 3
+                    </td>
+                    
+                </tr>
+            </table>
+            <hr width="100%">
+            Add tags according to your preferences
             <form [formGroup]="tagForm">
                 <div>
                     <table>
@@ -62,8 +92,6 @@
             </form>
         <button *ngIf="!shouldEdit" color="primary" type="submit" (click)="addPreference()" mat-raised-button>Done</button>
         <button *ngIf="shouldEdit" color="primary" type="submit" (click)="updatePreference()" mat-raised-button>Done</button>
-    
         </div>
-    </form>
-    
-    </div>
+    </form>    
+</div>

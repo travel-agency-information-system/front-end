@@ -1,14 +1,18 @@
-html, body {
+body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 20px;
+    background-color: #253B34;
+    height: auto;
 }
 
 .tour-card {
     width: 680px;
     background-color: #B6D4AF;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    padding: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
     margin: 0 auto;
     margin-bottom: 20px;
     margin-top: 30px;
@@ -35,6 +39,7 @@ html, body {
     font-weight: bold;
     font-family: 'Poppins', sans-serif;
     margin-bottom: 10px; 
+    padding-top: 2vh;
 }
 
 .tour-price {
@@ -67,7 +72,7 @@ html, body {
 .subtitle {
     font-size: 18px;
     font-weight: bold;
-    margin-top: 20px;
+    margin-top: 4vh;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -102,7 +107,7 @@ html, body {
 
 .checkpoint-card {
     display: flex;
-    background-color: #fff;
+    background-color: #F7F6DC;
     border: 1px solid #ddd;
     overflow: hidden;
     margin-bottom: 20px;
@@ -149,15 +154,14 @@ html, body {
 }
 
 .equipment-item {
-    flex: 0 0 calc(20% - 20px); 
-    margin-right: 20px; 
+    display: flex;
     margin-bottom: 20px;
     border: 1px solid #ddd;
-    background-color: #fff;
+    background-color: #F7F6DC;
     padding: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     box-sizing: border-box; 
-    flex-basis: 50%;
+    flex-basis: 100%;
     white-space: nowrap;
 }
 
@@ -173,4 +177,14 @@ html, body {
 
 .equipment-item .detail-value {
     flex-basis: 68%;
+}
+
+
+.navButtonBack{
+    background-color: #F7F6DC;
+}
+
+.navButtonStart{
+    background-color: #253B34;
+    color: #F7F6DC;
 }

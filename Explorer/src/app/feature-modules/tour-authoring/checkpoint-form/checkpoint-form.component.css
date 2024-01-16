@@ -10,13 +10,17 @@
     padding-left:30px;
     padding-right: 30px;
 }
-
+.upload-btn:hover {
+    background-color: #13543d;
+    color: white
+}
 .subtitle{
     margin: 0 auto;
     font-size: 4vh;
   color:#E67840;
   font-weight:bold;
   padding: 1% 2.5%; 
+  margin-top: 40px;
 
 }
 
@@ -64,7 +68,14 @@
     margin: 0 auto;
     margin-top: 30px;
 }
+.button:hover{
+    background-color: #dc4900;
 
+}
+.buttonPlus:hover{
+    background-color: #dc4900;
+
+}
 .button{
     width: auto;
     margin-left: 10px;
@@ -83,14 +94,15 @@
 p{
     color:#E67840;
     font-weight: bold;
-    font-size:18px;
+    font-size:16px;
 }
 
 select{
     height: 50px;
     width : 210px;
-    background-color: white;
+    background-color: #ededed;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border: 0;
 }
 
 mat-form-field {

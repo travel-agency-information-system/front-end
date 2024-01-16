@@ -42,7 +42,7 @@ export class TourFormComponent implements OnChanges,OnInit{
 
     this.activatedRoute.params.subscribe(params=>{
       this.id=params['id'];
-      if(this.id>0)
+      if(this.id != 0)
       {
         this.shouldEdit=true;
         this.getTour(this.id);

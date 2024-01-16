@@ -97,8 +97,7 @@ export class ProfileAdministrationComponent implements OnInit{
   checkUserRole(){
     this.authService.user$.subscribe(user => {
       this.user = user; 
-      if(this.user.role.toLowerCase().includes("tourist")){
-        this.user.role = this.user.role.toUpperCase();
+      if(this.user.role === "tourist"){
         this.isTourist = true;
         this.findTourist(user.id)
       }
@@ -219,5 +218,9 @@ export class ProfileAdministrationComponent implements OnInit{
     } else {
       this.selectedImage = null;
     }
+  }
+
+  createEncounter():void {
+    this.router.navigate(['tourist-encounter-form']);
   }
 }

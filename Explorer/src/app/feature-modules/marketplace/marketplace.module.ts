@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatRadioModule } from '@angular/material/radio';
 import { ReportingIssueComponent } from './reporting-issue/reporting-issue.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -69,6 +70,7 @@ import { ViewCouponAuthorComponent } from './view-coupon-author/view-coupon-auth
         CommonModule,
         MatInputModule,
         MatFormFieldModule,
+        MatRadioModule,
         FormsModule,
         ReactiveFormsModule,
         MaterialModule,

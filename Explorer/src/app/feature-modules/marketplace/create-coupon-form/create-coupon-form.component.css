@@ -5,7 +5,38 @@ body {
     align-items: center;
     height: 100vh;
 }
+body{
+    background-color: #3B846B!important;
+    height: 100%;
+    margin: 0;
+    overflow:auto;
+}
+label{
+    color:#E67840;
+    font-size: 2vh;
+    font-weight: 600;
+}
+.available{
+    color:#E67840;
+    font-size: 3vh;
+    font-weight: 1000;
+}
+.para-t{
+    
+    padding: 5px;
+    font-size: 4vh;
+    color:#E67840;  
+    font-weight:bold;
+    margin-left: 10%;
+    width:8cm
+  }
+ .coupon{
+    background-color: #3B846B;
+ } 
 
+ body{
+    background-color: #3B846B;
+ }
 #create-coupon-div {
     position:fixed;
     top: 50%;
@@ -14,15 +45,17 @@ body {
     text-align: center;
     width: 400px;
 }
-
+mat-form-field {
+    font-size: 16px; /* Adjust the font size as needed */
+  }
 #create-coupon-fieldset{
     display: flex;
     flex-direction: column;
     width: 100%;
-    background: #B6D4AF;
+    background: #F7F6DC;
     font-size: 24px;
     border: none;
-    border-radius: 50px;
+    border-radius: 20px;
 }
 
 legend {
@@ -136,17 +169,25 @@ legend {
     background-color: #D45A15; /* Promeni boju prilikom hovera */
 }
 
-button {
-    font-weight: bold;
-    background-color: #E67840;
-    color: white;
+.button{
+    width: 30px;
     height: 30px;
-    width: 70px;
-    border: none;
-    border-radius: 7px;
+    margin-left: 10px;
+    margin-bottom: 15px;
+    padding: 0px 90px;
+    margin-left:20px;
+
+    color:#fff;
+    font-size:15px;
+    background-color: #E67840;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 100px;
     cursor: pointer;
-    margin-bottom: 5px;
-    transition: background-color 0.3s ease; /* Dodao efekat prelaska boje */
+}
+
+.button:hover{
+    background-color: #dc4900;
+
 }
 
 button:hover {

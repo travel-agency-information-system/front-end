@@ -26,17 +26,21 @@ export class PreferenceFormComponent {
   ngOnInit(): void {
     this.authService.user$.subscribe(user => {
       this.user = user;
-      if(this.shouldEdit){
-        this.tags=this.preference.tags;
-      }
-      else{
-        this.tags=[];
-      }
+
     });
 
 
 
   }
+
+  preferenceForm = new FormGroup({
+    difficulty: new FormControl('Easy'),
+    walk: new FormControl(0),
+    bike: new FormControl(0),
+    car: new FormControl(0),
+    boat: new FormControl(0),
+  });
+
   ngOnChanges(): void {
     this.preferenceForm.reset();
     if(this.shouldEdit) {
@@ -52,21 +56,14 @@ export class PreferenceFormComponent {
     tag:new FormControl<string>("",{ nonNullable: true})
   });
 
-  preferenceForm = new FormGroup({
-    difficulty: new FormControl('Easy'),
-    walk: new FormControl(0),
-    bike: new FormControl(0),
-    car: new FormControl(0),
-    boat: new FormControl(0),
-  });
 
   addPreference(): void {
     const preference: TourPreference = {
       difficulty: this.preferenceForm.value.difficulty || "",
-      walk: Number(this.preferenceForm.value.walk) || 0,
-      bike: Number(this.preferenceForm.value.bike) || 0,
-      car: Number(this.preferenceForm.value.car) || 0,
-      boat: Number(this.preferenceForm.value.boat) || 0,
+      walk: Number(this.preferenceForm.value.walk) || 1,
+      bike: Number(this.preferenceForm.value.bike) || 1,
+      car: Number(this.preferenceForm.value.car) || 1,
+      boat: Number(this.preferenceForm.value.boat) || 1,
       creatorId : this.user.id,
       tags : this.tags,
     };

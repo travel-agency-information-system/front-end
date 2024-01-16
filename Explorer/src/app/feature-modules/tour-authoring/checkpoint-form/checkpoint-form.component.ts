@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { TokenStorage } from 'src/app/infrastructure/auth/jwt/token.service';
 import { PublicCheckpoint } from '../../tour-execution/model/public_checkpoint.model';
 import { ImageService } from 'src/app/shared/image/image.service';
+import { NumberInput } from '@angular/cdk/coercion';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class CheckpointFormComponent implements OnChanges, OnInit{
   latitude: number = 0;
   publicCheckpoints: PublicCheckpoint[] = [];
   picturePreview: string[] = [];
+  selectPublicCPName: string ='';
 
   constructor(private service: TourAuthoringService, private imageService: ImageService, private router:Router,
     private tokenStorage: TokenStorage) {
@@ -33,14 +35,15 @@ export class CheckpointFormComponent implements OnChanges, OnInit{
   }
 
   ngOnInit(): void {
-    this.service.getCheckpoint(this.selectedCheckpoint.id || 0).subscribe(result =>{
-      this.selectedCheckpoint = result;
-    });
 
     this.service.getPublicCheckpoints().subscribe(result => {
       this.publicCheckpoints = result.results;
       this.addPublicCheckpoinsOnMap();
     });
+    this.service.getCheckpoint(this.selectedCheckpoint.id || 0).subscribe(result =>{
+      this.selectedCheckpoint = result;
+    });
+
   }
   ngAfterViewInit(): void {
     if(this.shouldEdit) {
@@ -204,8 +207,8 @@ export class CheckpointFormComponent implements OnChanges, OnInit{
   }
 
   onPublicCPChange($event: any): void{
-
     var pc = this.publicCheckpoints.filter(n => n.id?.toString() == this.checkpointForm.controls.publicCP.value)[0];
+    this.selectPublicCPName = pc.name;
     this.checkpointForm.reset();
     this.checkpointForm.controls.description.setValue(pc.description);
     this.checkpointForm.controls.name.setValue(pc.name);
@@ -287,6 +290,7 @@ export class CheckpointFormComponent implements OnChanges, OnInit{
     formData.append('showedPointPicture', checkpoint.showedPointPicture);
     formData.append('authorId', checkpoint.authorId.toString());
     formData.append('isSecretPrerequisite', checkpoint.isSecretPrerequisite.toString());
+    console.log(JSON.stringify(checkpoint.checkpointSecret));
   }
 
   onImageSelected(event: any): void {

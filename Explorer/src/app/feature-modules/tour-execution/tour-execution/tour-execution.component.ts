@@ -220,7 +220,7 @@ export class TourExecutionComponent implements OnInit, AfterViewInit {
 
   // Report an Issue
   reportIssue(): void{
-    this.router.navigate([`reporting-issues`]);
+    this.router.navigate([`/my-profile/reporting-issues`]);
   }
   
   // Weather Forecast Popup

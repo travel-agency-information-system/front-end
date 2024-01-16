@@ -13,6 +13,22 @@
     justify-content: space-between;
 }
 
+::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  /* Handle (thumb) of the scrollbar */
+  ::-webkit-scrollbar-thumb {
+    background-color: #E67840; /* Color of the thumb */
+    border-radius: 10px; /* Rounded corners */
+  }
+  
+  /* Track (the area on which the thumb moves) of the scrollbar */
+  ::-webkit-scrollbar-track {
+    background-color: #B6D4AF; /* Color of the track */
+    border-radius: 10px;
+  }
+
 .tour-info{
     height: 100%;
     width: 65%;

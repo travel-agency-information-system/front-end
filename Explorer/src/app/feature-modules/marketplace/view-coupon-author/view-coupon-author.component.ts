@@ -97,8 +97,11 @@ export class ViewCouponAuthorComponent implements OnInit{
     this.router.navigate([`/create-coupon`]);
   }
 
-  getGlobalStatusText(isGlobal: boolean): string {
-    return isGlobal ? 'Global coupon' : 'Not global coupon';
+  getGlobalStatusText(isGlobal: boolean, tourId: number): string {
+    if (!isGlobal)
+    return 'Coupon for tour ' + this.tours.filter(t => t.id == tourId)[0].name;
+  else
+    return 'Global coupon';
   }
 
   cancelUpdate() {

@@ -1,3 +1,8 @@
+body{
+    background-color: #3B846B;
+    padding-top: 5vh;
+    height: 100%;
+}
 
 .row {
     display: flex;
@@ -22,6 +27,8 @@
     flex-direction: row;
     justify-content: space-between;
     height: 26vh;
+    color: white;
+    background-color: #253B34; 
     border-bottom: 2px solid #E67840;
 }
 .left {
@@ -40,7 +47,7 @@
 
 
 .blog:hover {
-    background-color: #F7F6DC;
+    background-color: #3B846B;
     cursor: pointer;
 }
 
@@ -55,13 +62,15 @@
     border-radius: 5px;
     object-fit: cover;
 }
-.title{
+.title {
     margin-top: -6px;
     line-height: 1.2;
     font-weight: 500;
     color: #E67840;
     font-size: x-large;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
 }
+
 .description{
     margin-top: 4px;
     text-wrap: wrap;
@@ -77,11 +86,23 @@
     align-items: flex-end;
 }
 
-
+::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #E67840;
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: #B6D4AF;
+    border-radius: 10px;
+  }
 .status{
     font-size: large;
     font-weight: 500;
-    color: #3B846B;
+    color: #F7F6DC;
 }
 .ratings{
     display: flex;
@@ -92,8 +113,8 @@
     margin-right: 2vh;
 }
 .filters{
-    width:30%;
-    background-color:#B6D4AF ;
+    width: 30%;
+    background-color: #F7F6DC;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -115,7 +136,9 @@
     text-align: center;
 }
 .paginator {
-    color: #3B846B;
+    color: #253B34;
+    background-color: #B6D4AF;
     font-weight: bold;
     font-size: medium;
+    border-bottom: 2px solid #253B34;
 }

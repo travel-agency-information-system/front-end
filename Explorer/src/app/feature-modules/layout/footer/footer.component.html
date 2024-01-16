@@ -11,30 +11,34 @@
             <label class="subtitle">Features</label>
             <ul>
                 <li *ngIf="user?.role === 'tourist' || user?.role === 'author' || user?.role === ''"><a href="/blogs">Blogs</a></li>
-                <li *ngIf="user?.role === 'tourist' || user?.role === 'author' || user?.role === ''"><a href="/club">Clubs</a></li>
-                <li><a href="/social-profile">Social profile</a></li>
-                <li *ngIf="user?.role === 'administrator'"><a href="/equipment">Manage equipment</a></li>
-                <li *ngIf="user?.role === 'administrator'"><a href="/grade-review">Grade review</a></li>
-                <li *ngIf="user?.role === 'administrator'"><a href="/checkpoint-request-review">Requests</a></li>
+                <li *ngIf="user?.role === 'tourist' || user?.role === 'author' || user?.role === ''"><a href="/my-profile/club">Clubs</a></li>
+                <li><a href="/my-profile/social-profile">Social profile</a></li>
+                <li *ngIf="user?.role === 'administrator'"><a href="/my-profile/equipment">Manage equipment</a></li>
+                <li *ngIf="user?.role === 'administrator'"><a href="/my-profile/grade-review">Grade review</a></li>
+                <li *ngIf="user?.role === 'administrator'"><a href="/my-profile/checkpoint-request-review">Requests</a></li>
             </ul>
         </div>
         <div class="column">
             <label class="subtitle">Tours</label>
             <ul>
-                <li *ngIf="user?.role === 'tourist' || user?.role === 'author' || user?.role === ''"><a href="/tour-overview">Search tours</a></li>
-                <li *ngIf="user?.role === 'tourist' || user?.role === 'author' || user?.role === ''"><a href="/preference">Tour preferences</a></li>
-                <li *ngIf="user?.role === 'tourist' || user?.role === 'author' || user?.role === ''"><a href="/shopping-cart">Shopping cart</a></li>
-                <li *ngIf="user?.role === 'tourist' || user?.role === 'author' || user?.role === ''"><a href="/tour-bundles">Bundle offers</a></li>
-                <li *ngIf="user?.role === 'administrator'"><a href="/tour-rating">Tour rating</a></li>
+                <li *ngIf="user?.role === 'tourist' || user?.role === ''"><a href="/tour-overview">Search tours</a></li>
+                <li *ngIf="user?.role === 'tourist' || user?.role === ''"><a href="/my-profile/preference">Tour preferences</a></li>
+                <li *ngIf="user?.role === 'tourist' || user?.role === ''"><a href="/shopping-cart">Shopping cart</a></li>
+                <li *ngIf="user?.role === 'tourist' || user?.role === ''"><a href="/tour-bundles">Bundle offers</a></li>
+                <li *ngIf="user?.role === 'author'"><a href="/my-profile/tour">Tours</a></li>
+                <li *ngIf="user?.role === 'author'"><a href="/tour-statistics">Tour Statistics</a></li>
+                <li *ngIf="user?.role === 'author'"><a href="/my-profile/map-object">Map Objects</a></li>
+                <li *ngIf="user?.role === 'administrator' || user?.role === 'author'"><a href="/my-profile/tour-rating">Tour rating</a></li>
             </ul>
         </div>
         <div class="column">
             <label class="subtitle">Usefull links</label>
             <ul>
-                <li *ngIf="user?.role === 'administrator'"><a href="/notifications">Notifications</a></li>
+                <li *ngIf="user?.role === 'administrator'"><a href="/my-profile/notifications">Notifications</a></li>
                 <li *ngIf="!ratingExists && user?.role === 'tourist' || user?.role === 'author' || user?.role === ''"><a href="/application-grade">Rate the app</a></li>
                 <li><a href="/home">Help</a></li>
-                <li *ngIf="user?.role === 'tourist' || user?.role === 'author' || user?.role === ''"><a href="/my-profile/reporting-issues">Report an issue</a></li>
+                <li *ngIf="user?.role === 'tourist' || user?.role === ''"><a href="/my-profile/reporting-issues">Report an issue</a></li>
+                <li *ngIf="user?.role === 'author'"><a href="/my-profile/reported-issues">Reported Issues</a></li>
                 <li><a href="/home">FAQs</a></li>                
             </ul>
         </div>

@@ -24,18 +24,19 @@
             <p class="demandignessLevel">       </p>
             <img src="https://cdn-icons-png.flaticon.com/512/8171/8171573.png" alt="Lmaooo" style="width: 250px; height: 250px;" />
         </div>
-        <p class="demandignessLevel">Difficulty:</p>
-        <div class="routingButton2">
-            
-                <select formControlName="demandignessLevel" class="difficulty-select">
-                    <option  value="Easy" >Easy</option>
-                    <option  value="Medium">Medium</option>
-                    <option  value="Hard">Hard</option>
-                </select>
-            </div>
-    
+        <div >
+            <mat-form-field>
+                <mat-label>Difficulty</mat-label>
+                <mat-select formControlName="demandignessLevel" >
+                    <mat-option  value="Easy" >Easy</mat-option>
+                    <mat-option  value="Medium">Medium</mat-option>
+                    <mat-option  value="Hard">Hard</mat-option>
+                </mat-select>
+           
+        </mat-form-field>
+    </div>
         <mat-form-field>
-            <mat-label>Price</mat-label>
+            <mat-label>Price (AC)</mat-label>
             <input matInput formControlName="price" type="number" [defaultValue]="0" min="0" placeholder="0"/>
         </mat-form-field>
         <form [formGroup]="tagForm">

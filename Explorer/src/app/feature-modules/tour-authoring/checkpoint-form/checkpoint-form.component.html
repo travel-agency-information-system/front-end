@@ -2,10 +2,14 @@
     <div id="checkpoint">
         <p class="subtitle">Create checkpoint</p>
         <br>
-        <p>Choose one of public checkpoints: </p>
-        <select (change)="onPublicCPChange($event)" formControlName="publicCP">
-            <option *ngFor="let p of publicCheckpoints" [ngValue]="p.id">{{p.name}}</option>
-        </select>
+        <p>📌  Choose one of public checkpoints: </p>
+        <mat-form-field>
+            <mat-select (selectionChange)="onPublicCPChange($event)" formControlName="publicCP" placeholder="{{selectPublicCPName}}">
+                <mat-option *ngFor="let p of publicCheckpoints" value="{{p.id}}">{{p.name}}</mat-option>
+            </mat-select>
+
+        </mat-form-field>
+        <p>✏️  Or create new checkpoint: </p>
         <mat-form-field>
             <mat-label>Name:</mat-label>
             <input matInput type="text" formControlName="name">
@@ -14,7 +18,7 @@
             <mat-label>Description:</mat-label>
             <input matInput type="text" formControlName="description">
         </mat-form-field>
-        <p>Required time:</p>
+        <p>🕗  Required time:</p>
         <div class="time">
             <mat-form-field>
                 <mat-label>hours</mat-label>
@@ -25,7 +29,7 @@
                 <input matInput type="number" min="0" max="60" step="5" formControlName="minutes">
             </mat-form-field>
         </div>
-        <p>Input address or choose on map:</p>
+        <p>🗺️  Input address or choose on map:</p>
         <div class="address">
             <p>Address:     </p>
             <input matInput type="text" formControlName="address" class="adress-input">
@@ -68,7 +72,6 @@
                 <button (click)="onBack()" class="button" mat-raised-button>Back</button>
                 <button *ngIf="!shouldEdit" class="button" (click)="addCheckpoint()" mat-raised-button>Add checkpoint</button>
                 <button *ngIf="shouldEdit" class="button" (click)="updateCheckpoint()" mat-raised-button>Next</button>
-        
             </div>
     </div>
 </form>

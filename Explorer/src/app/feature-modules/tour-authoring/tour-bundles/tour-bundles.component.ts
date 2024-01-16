@@ -5,6 +5,8 @@ import { TourAuthoringService } from '../tour-authoring.service';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 import { User } from 'src/app/infrastructure/auth/model/user.model';
 import { PagedResults } from 'src/app/shared/model/paged-results.model';
+import { ImageService } from 'src/app/shared/image/image.service';
+import { Tour } from '../model/tour.model';
 
 @Component({
   selector: 'xp-tour-bundles',
@@ -15,7 +17,7 @@ export class TourBundlesComponent implements OnInit{
   tourBundles: TourBundle[] = [];
   user: User;
 
-  constructor(private service: TourAuthoringService,private authService: AuthService,private router:Router) { }
+  constructor(private service: TourAuthoringService,private authService: AuthService,private router:Router, private imageService: ImageService) { }
 
   ngOnInit(): void {
     this.authService.user$.subscribe(user => {
@@ -80,4 +82,35 @@ export class TourBundlesComponent implements OnInit{
   editBundle(bundle: TourBundle): void{
     this.router.navigate(['/tour-bundle-edit/' + bundle.id || '']);
   }
+
+  getImageUrl(imageName: string): string {
+    return this.imageService.getImageUrl(imageName);
+  }
+
+  priceSum(tourBundle: TourBundle){
+    var sum = 0;
+    if(!tourBundle.tours){
+      return sum;
+    }
+    for(let tour of tourBundle.tours){
+      sum += tour.price;
+    }
+    return sum;
+  }
+  averageGrade(tour: Tour){
+    var sum = 0;
+    var count = 0;
+    for(let g of tour.tourRatings){
+      sum += g.rating;
+      count ++;
+    }
+    return parseFloat((sum/count).toFixed(1)).toFixed(1);
+  }
+
+  selectTour(tour:Tour){
+    if(tour.id){
+      this.router.navigate(['/tour-details', tour.id]);
+    }
+  }
+
 }

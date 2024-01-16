@@ -2,7 +2,7 @@
     <div style=" display: flex;  height: auto;">
         <div class="tour">
             <div style=" height: 5px"></div>
-            <h1 class="title">Your tours</h1>
+            <h1 class="title">My tours</h1>
             <span class="navbar-span">
                 <span style="display: flex; flex-direction: row; justify-content: start;">
                     <button class="filtersButton" (click)="onAddClicked()">Add a new tour</button>
@@ -28,7 +28,7 @@
                                 <label *ngIf="isOnSale(tour.id||0)" class="discount"> -{{Discount(tour.id||0)}}% </label>
                                 <img class="last_minute" *ngIf="isLastMinute(tour.id||0) && isOnSale(tour.id||0)" src="../../../../assets/landing_page/last-minute-offer.png" alt="image1">
                             </div>
-                            <img *ngIf="tour.checkpoints[0].pictures && tour.checkpoints[0].pictures.length > 0" [src]="getImageUrl(tour.checkpoints[0].pictures[0])" alt="Image1" class="tour-card-img">
+                            <img *ngIf="tour.checkpoints && tour.checkpoints.length > 0 && tour.checkpoints[0].pictures && tour.checkpoints[0].pictures.length > 0" [src]="getImageUrl(tour.checkpoints[0].pictures[0])" alt="Image1" class="tour-card-img">
                             
                         </div>
                         <div class="card-top">
@@ -69,7 +69,7 @@
                             <label *ngIf="isOnSale(tour.id||0)" class="discount"> -{{Discount(tour.id||0)}}% </label>
                             <img class="last_minute" *ngIf="isLastMinute(tour.id||0) && isOnSale(tour.id||0)" src="../../../../assets/landing_page/last-minute-offer.png" alt="image1">
                         </div>
-                        <img *ngIf="tour.checkpoints[0].pictures && tour.checkpoints[0].pictures.length > 0" [src]="getImageUrl(tour.checkpoints[0].pictures[0])" alt="Image1" class="tour-card-img">
+                        <img *ngIf="tour.checkpoints && tour.checkpoints.length > 0 && tour.checkpoints[0].pictures && tour.checkpoints[0].pictures.length > 0" [src]="getImageUrl(tour.checkpoints[0].pictures[0])" alt="Image1" class="tour-card-img">
                         
                     </div>
                     <div class="card-top">

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild ,ElementRef} from '@angular/core';
 import { EncounterService } from '../encounter.service';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 import { ImageService } from 'src/app/shared/image/image.service';
@@ -16,6 +16,7 @@ import { MapComponent } from 'src/app/shared/map/map.component';
   styleUrls: ['./encounter-form.component.css']
 })
 export class EncounterFormComponent implements OnInit{
+  @ViewChild('fileUpload') fileUpload: ElementRef ;
 
   constructor(private service: EncounterService, authService: AuthService, private imageService: ImageService,private activatedRoute:ActivatedRoute,
     private tourAuthoringService: TourAuthoringService,private router:Router) {
@@ -40,7 +41,7 @@ export class EncounterFormComponent implements OnInit{
     this.activatedRoute.params.subscribe(params=>{
       this.id=params['id'];
         this.getCheckpoint(this.id);
-        if(this.checkpoint.encounterId > 0)
+        if(this.checkpoint.encounterId != 0)
         {
           if(this.edit)
           {

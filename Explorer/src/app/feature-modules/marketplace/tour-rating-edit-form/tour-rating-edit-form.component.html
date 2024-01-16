@@ -1,16 +1,22 @@
 <div id="tour-rating-form">
-    <form [formGroup]="tourRatingForm">
+  <form class="rating-form" [formGroup]="tourRatingForm">
+    <div class="center-container">
       <div>
+        <div class="rating-div">
+          <label>Rating</label> 
+          <mat-radio-group formControlName="rating">
+              <label *ngFor="let rating of [1, 2, 3, 4, 5]" class="radio-label">
+              <mat-radio-button [value]="rating">{{ rating }}</mat-radio-button>
+              </label>
+          </mat-radio-group>
+        </div>
         <mat-form-field>
-          <mat-label>Rating</mat-label>
-          <input matInput formControlName="rating" type="number" min="1" max="5" placeholder="1" [(ngModel)]="rating.rating" />
+            <mat-label>Comment</mat-label>
+                <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1"
+                formControlName="comment" cdkAutosizeMaxRows="5"></textarea>
         </mat-form-field>
-        <mat-form-field>
-          <mat-label>Comment</mat-label>
-          <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" formControlName="comment" cdkAutosizeMaxRows="5" [(ngModel)]="rating.comment"></textarea>
-        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="editTourRating()">Edit</button>
       </div>
-      <button mat-raised-button color="primary" (click)="editTourRating()">Edit</button>
-    </form>
-  </div>
-  
+    </div>
+  </form>  
+</div>

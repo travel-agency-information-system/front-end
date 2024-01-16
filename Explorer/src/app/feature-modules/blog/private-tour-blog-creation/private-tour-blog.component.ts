@@ -43,7 +43,7 @@ export class PrivateTourBlogComponent implements OnInit{
       if(result){
         this.tour = result;
         console.log('Blog has been successfully added.');
-        this.router.navigate(['/private-tour-blogs']);
+        this.router.navigate(['/my-profile/private-tour-blogs']);
       }
       else{
         console.log('Error while creating blog on a private tour.');

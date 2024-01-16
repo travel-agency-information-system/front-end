@@ -4,6 +4,8 @@
     gap: 20px;
     flex-direction: column;
     margin: 0 auto;
+    background-color: #F7F6DC;
+    border: 1px solid white;
 }
 
 .button{

@@ -15,6 +15,26 @@ select{
     
 }
 
+.file-input {
+    display: none;
+}
+
+.upload-btn {
+    background-color: #3B846B;
+    color: white
+}
+.upload-btn:hover {
+    background-color: #13543d;
+    color: white
+}
+
+.simg{
+    font-size: 2vh;
+    width:15cm;
+    margin-left:-0.3cm
+
+}
+
 #encounter-form{
     width: 400px;
     display:flex;
@@ -52,7 +72,7 @@ mat-form-field{
 }
 .button{
     width: auto;
-    margin-left: 130px;
+    margin-left: 50%;
     margin-bottom: 15px;
     padding: 0px 10px;
     width: 120px;
@@ -62,6 +82,10 @@ mat-form-field{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     border-radius: 100px;
     cursor: pointer;
+}
+.button:hover{
+    background-color: #dc4900;
+
 }
 
 .button1{

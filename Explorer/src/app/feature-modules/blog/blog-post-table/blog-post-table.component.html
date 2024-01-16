@@ -1,53 +1,55 @@
-<div id="blog-posts">
-    <hr>
-    <div id="blog-post-details" class="row">
-        <div class="blog-list">
-            <table class="blog-table">
-                
-                <tr *ngFor="let blogPost of blogPosts" (click)="onRowSelected(blogPost)" class="blog">
-                    <div class="left">
-                        <div class="image-container">
-                            <img class="picture" *ngIf="blogPost.imageNames && blogPost.imageNames.length>0" [src]="getImageUrl(blogPost.imageNames[0])" alt="blog image">
+<body>
+    <div id="blog-posts">
+        
+        <div id="blog-post-details" class="row">
+            <div class="blog-list">
+                <table class="blog-table">
+                    
+                    <tr *ngFor="let blogPost of blogPosts" (click)="onRowSelected(blogPost)" class="blog">
+                        <div class="left">
+                            <div class="image-container">
+                                <img class="picture" *ngIf="blogPost.imageNames && blogPost.imageNames.length>0" [src]="getImageUrl(blogPost.imageNames[0])" alt="blog image">
+                            </div>
+                            <div class="informations">  
+                                <p><i>Created on: {{blogPost.creationDate | date}} by @{{blogPost.username}}</i></p>
+                                <label class="title">{{blogPost.title}}</label>
+                                <p class="description">Description: {{blogPost.description}}</p>
+                            </div>
                         </div>
-                        <div class="informations">  
-                            <p><i>Created on: {{blogPost.creationDate | date}} by @{{blogPost.username}}</i></p>
-                            <label class="title">{{blogPost.title}}</label>
-                            <p class="description">Description: {{blogPost.description}}</p>
+                        <div class="additional-info">
+                            <label class="status">{{blogPost.status}}</label>
+                            <div class="ratings">
+                                <div class="upvote">{{thumbsUpEmoji}} {{getUpvoteCount(blogPost)}}</div>
+                                <div class="downvote">{{thumbsDownEmoji}} {{getDownvoteCount(blogPost)}}</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="additional-info">
-                        <label class="status">{{blogPost.status}}</label>
-                        <div class="ratings">
-                            <div class="upvote">{{thumbsUpEmoji}} {{getUpvoteCount(blogPost)}}</div>
-                            <div class="downvote">{{thumbsDownEmoji}} {{getDownvoteCount(blogPost)}}</div>
-                        </div>
-                    </div>
-                </tr>
-            </table>
-            <mat-paginator [length]="totalBlogPosts" [pageSize]="pageSize"
-                (page)="onPageChange($event)" class="paginator"></mat-paginator>
-        </div>
-        <div class="filters">
-            <label class="filters-label">Filters</label>
-            <div class="filter-fields">
-                <mat-form-field class="filter-field">
-                    <mat-label>Status</mat-label>
-                    <mat-select [(value)]="selectedStatus" (selectionChange)="loadBlogPosts()">
-                        <mat-option value="Active">Active</mat-option>
-                        <mat-option value="Famous">Famous</mat-option>
-                        <mat-option value="">All</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field class="filter-field">
-                    <mat-label>Blogs per page</mat-label>
-                    <mat-select [(value)]="pageSize" (selectionChange)="onPageSizeChange($event)">
-                        <mat-option value="5">5</mat-option>
-                        <mat-option value="10">10</mat-option>
-                        <mat-option value="20">20</mat-option>
-                        <mat-option value="50">50</mat-option>
-                    </mat-select>
-                </mat-form-field>
+                    </tr>
+                </table>
+                <mat-paginator [length]="totalBlogPosts" [pageSize]="pageSize"
+                    (page)="onPageChange($event)" class="paginator"></mat-paginator>
+            </div>
+            <div class="filters">
+                <label class="filters-label">Filters</label>
+                <div class="filter-fields">
+                    <mat-form-field class="filter-field">
+                        <mat-label>Status</mat-label>
+                        <mat-select [(value)]="selectedStatus" (selectionChange)="loadBlogPosts()">
+                            <mat-option value="Active">Active</mat-option>
+                            <mat-option value="Famous">Famous</mat-option>
+                            <mat-option value="">All</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="filter-field">
+                        <mat-label>Blogs per page</mat-label>
+                        <mat-select [(value)]="pageSize" (selectionChange)="onPageSizeChange($event)">
+                            <mat-option value="5">5</mat-option>
+                            <mat-option value="10">10</mat-option>
+                            <mat-option value="20">20</mat-option>
+                            <mat-option value="50">50</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</body>
