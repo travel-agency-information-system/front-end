@@ -15,6 +15,7 @@ import { User } from 'src/app/infrastructure/auth/model/user.model';
 import { PublicCheckpoint } from '../tour-execution/model/public_checkpoint.model';
 import { PublicTour } from '../marketplace/model/public-tour.model';
 import { PrivateTour } from './model/private-tour.model';
+import { List } from 'postcss/lib/list';
 
 
 @Injectable({
@@ -70,8 +71,8 @@ export class TourAuthoringService {
     return this.http.put<Checkpoint>(environment.apiHost + 'administration/checkpoint/updateSecret/' + id, checkpointSecret);
   }
 
-  getMapObjects(): Observable<PagedResults<MapObject>> {
-    return this.http.get<PagedResults<MapObject>>(environment.apiHost + 'administration/mapObject');
+  getMapObjects(): Observable<MapObject[]> {
+    return this.http.get<MapObject[]>(environment.apiHost + 'administration/mapObject');
   }
 
   deleteMapObject(id: number): Observable<MapObject> {
@@ -88,7 +89,7 @@ export class TourAuthoringService {
     if (mapObject.picture instanceof File) {
       formData.append('picture', mapObject.picture, mapObject.picture.name);
     }
-  
+
     // Assuming profilePictureUrl is a string
     formData.append('pictureURL', mapObject.pictureURL);
     return this.http.post<MapObject>(environment.apiHost + `administration/mapobject/create/${userId}/${status}`, formData, options);

@@ -50,8 +50,8 @@ export class MarketplaceService {
     return this.http.put<TourPreference>(environment.apiHost + 'tourism/preference/' + preference.id, preference);
   }
 
-  getTourPreference(id: number): Observable<TourPreference> {
-    return this.http.get<TourPreference>(environment.apiHost + 'tourism/preference/'+id)
+  getTourPreference(id: number): Observable<TourPreference[]> {
+    return this.http.get<TourPreference[]>(environment.apiHost + 'tourism/preference/'+id)
   }
 
   deleteTourPreference(id: number): Observable<TourPreference> {

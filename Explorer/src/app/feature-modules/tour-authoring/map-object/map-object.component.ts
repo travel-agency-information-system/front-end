@@ -20,16 +20,16 @@ export class MapObjectComponent {
 
   ngOnInit(): void {
     this.service.getMapObjects().subscribe({
-      next: async (result: PagedResults<MapObject>) => {
+      next: async (result: MapObject[]) => {
         console.log(result);
   
-        const pictureUrlPromises = result.results.map(async (obj) => {
+        const pictureUrlPromises = result.map(async (obj) => {
           return await this.imageService.getImageUrl(obj.pictureURL);
         });
 
         const pictureUrls = await Promise.all(pictureUrlPromises);
         
-        this.mapObjects = result.results.map((obj, index) => {
+        this.mapObjects = result.map((obj, index) => {
           return { ...obj, pictureURL: pictureUrls[index] };
         });
       },

@@ -36,11 +36,12 @@ export class PreferenceComponent {
 
   getPreference(): void {
     this.service.getTourPreference(this.user.id).subscribe({
-      next: (result: TourPreference) => {
-        this.preferences = [];
-        if(!(result.difficulty == null)){
-          this.preferences.push(result);
-        }
+      next: (result: TourPreference[]) => {
+        this.preferences = result;
+        console.log(result)
+        //if(!(result.difficulty == null)){
+         // this.preferences.push(result);
+        //}
       },
       error: () => {
       }

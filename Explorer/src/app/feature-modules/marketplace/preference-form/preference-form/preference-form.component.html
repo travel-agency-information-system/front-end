@@ -60,8 +60,8 @@
                 </table>
                 </div>
             </form>
-        <button *ngIf="!shouldEdit" color="primary" type="submit" (click)="addPreference()" mat-raised-button>Done</button>
-        <button *ngIf="shouldEdit" color="primary" type="submit" (click)="updatePreference()" mat-raised-button>Done</button>
+        <button *ngIf="!shouldEdit" color="primary" type="submit" (click)="addPreference()" mat-raised-button>Add</button>
+        <button *ngIf="shouldEdit" color="primary" type="submit" (click)="updatePreference()" mat-raised-button>Update</button>
     
         </div>
     </form>

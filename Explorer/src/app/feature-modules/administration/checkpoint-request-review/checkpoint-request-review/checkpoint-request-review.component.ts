@@ -26,7 +26,7 @@ export class CheckpointRequestReviewComponent implements OnInit{
   allCheckpointRequests: CheckpointRequest[] = [];
 
   objectRequestDetails: { id: number, objectName: string, objectDescription: string, authorName: string, status: Status, onHold:boolean, comment: string }[] = [];
-  allObjects: PagedResults<MapObject>;
+  allObjects: MapObject[];
   allObjectRequests: ObjectRequest[] = [];
 
   encounterRequestDetails: { id: number, encounterName: string, encounterXp: number,encounterLongitude: number,encounterLatitude: number, touristName: string, status: Status, onHold:boolean}[] = [];
@@ -111,7 +111,7 @@ export class CheckpointRequestReviewComponent implements OnInit{
 
   getAllObjects(): void {
     this.tourAuthService.getMapObjects().subscribe({
-        next: (objects: PagedResults<MapObject>) => {
+        next: (objects: MapObject[]) => {
             this.allObjects = objects;
             this.getAllCheckpoints()
         },
@@ -172,7 +172,7 @@ export class CheckpointRequestReviewComponent implements OnInit{
     });
 
     this.allObjectRequests.forEach(request => {
-      this.allObjects.results.forEach(object => {
+      this.allObjects.forEach(object => {
         this.allUsers.results.forEach(user => {
           if(request.authorId === user.id && request.mapObjectId === object.id) {
             let req: { id: number, objectName: string, objectDescription: string, authorName: string, status: Status, onHold:boolean, comment: string } = {

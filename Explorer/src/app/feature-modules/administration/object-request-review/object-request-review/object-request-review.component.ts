@@ -15,7 +15,7 @@ import { TourAuthoringService } from 'src/app/feature-modules/tour-authoring/tou
 export class ObjectRequestReviewComponent {
 
   requestDetails: { id: number, objectName: string, objectDescription: string, authorName: string, status: Status, onHold:boolean, comment: string }[] = [];
-  allObjects: PagedResults<MapObject>;
+  allObjects: MapObject[];
   allUsers: PagedResults<User>;
   allObjectRequests: ObjectRequest[] = [];
 
@@ -42,7 +42,7 @@ export class ObjectRequestReviewComponent {
 
   getAllObjects(): void {
     this.tourAuthService.getMapObjects().subscribe({
-        next: (objects: PagedResults<MapObject>) => {
+        next: (objects: MapObject[]) => {
             this.allObjects = objects;
             this.getAllUsers();
         },
@@ -70,7 +70,7 @@ export class ObjectRequestReviewComponent {
 
   fillRequestDetails(): void {
     this.allObjectRequests.forEach(request => {
-      this.allObjects.results.forEach(object => {
+      this.allObjects.forEach(object => {
         this.allUsers.results.forEach(user => {
           if(request.authorId === user.id && request.mapObjectId === object.id) {
             let req: { id: number, objectName: string, objectDescription: string, authorName: string, status: Status, onHold:boolean, comment: string } = {
