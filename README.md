@@ -6,7 +6,7 @@ Authors can create tours, publish them, enhance them with various challenges and
 
 Tourists can purchase, start tours, complete challenges, connect with each other, and enrich their travel experience in a simple way.
 
-The project was carried out using the SCRUM agile methodology for software development. We held weekly sprints where we discussed each software increment. We used a Trello board for writing user stories, where SCRUM masters assigned tasks to other team members, allowing us to easily track the project's progress.
+The project was carried out using the SCRUM agile methodology for software development. We had sprints every four weeks and weekly meetings where we discussed each software increment, what we had done, plans for the next week, problems encountered, etc. We used a Trello board for writing user stories, where SCRUM masters assigned tasks to other team members, allowing us to easily track the project's progress.
 
 Additionally, we had several meetings with our clients where we gathered user requirements, discussed potential issues and solutions, and received their feedback on testing the application.
 
