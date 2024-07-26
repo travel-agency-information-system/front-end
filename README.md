@@ -35,8 +35,7 @@ To set up the project locally, follow these steps:
 4. Configure the database using pgAdmin
 ```
 
-## Authors
-Contributors to this project:
+## Contributors
 - Ana Radovanović
 - Kristina Zelić
 - Milica Petrović
